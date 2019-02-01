@@ -19,8 +19,8 @@ public class CS3230Group extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("CS2330Group_FXML.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenuFXML.fxml"));
+        root.getStylesheets().add(getClass().getResource("darkTheme.css").toExternalForm());
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
