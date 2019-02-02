@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs3230group;
+package Products.UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;

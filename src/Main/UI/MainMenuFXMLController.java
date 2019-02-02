@@ -1,5 +1,8 @@
-package cs3230group;
+package Main.UI;
 
+import Categories.UI.CategoriesFXMLController;
+import Customers.UI.CustomersFXMLController;
+import Products.UI.ProductsFXMLController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
