@@ -7,7 +7,12 @@ package cs3230group;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -15,6 +20,35 @@ import javafx.fxml.Initializable;
  * @author erict
  */
 public class ProductsFXMLController implements Initializable {
+
+    @FXML
+    private Pane dbPane;
+    @FXML
+    private AnchorPane summaryPane;
+    @FXML
+    private Button dltBtn;
+    @FXML
+    private Button editBtn;
+    @FXML
+    private Button updBtn;
+    @FXML
+    private TextField prodIdBox;
+    @FXML
+    private TextField prodBox;
+    @FXML
+    private TextField descBox;
+    @FXML
+    private TextField costBox;
+    @FXML
+    private TextField addProdIdBox;
+    @FXML
+    private TextField addProdBox;
+    @FXML
+    private TextField addDescBox;
+    @FXML
+    private TextField addCostBox;
+    @FXML
+    private Button saveBtn;
 
     /**
      * Initializes the controller class.
