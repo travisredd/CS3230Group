@@ -18,7 +18,7 @@ import java.sql.Statement;
  */
 public class clsDataAccess {
     /**
-     * Holds the connection string to the database.
+     * Holds the connection string to the database. - NEED TO CHANGE THIS TO ORACLE DB
      */
     private static final String sConnection = "jdbc:derby://localhost:1527/Employees";
     
