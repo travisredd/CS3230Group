@@ -7,6 +7,7 @@ package cs3230group;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,12 +23,6 @@ import javafx.scene.layout.Pane;
 public class CustomersFXMLController implements Initializable {
 
     @FXML
-    private TextField custIdBox;
-    @FXML
-    private TextField nameBox;
-    @FXML
-    private TextField compBox;
-    @FXML
     private Button saveBtn;
     @FXML
     private TextField addCustBox;
@@ -39,6 +34,18 @@ public class CustomersFXMLController implements Initializable {
     private Pane dbPane;
     @FXML
     private AnchorPane summaryPane;
+    @FXML
+    private TextField custBox;
+    @FXML
+    private TextField nameBox;
+    @FXML
+    private TextField compBox;
+    @FXML
+    private Button dltBtn;
+    @FXML
+    private Button editBtn;
+    @FXML
+    private Button updBtn;
 
     /**
      * Initializes the controller class.
@@ -47,5 +54,17 @@ public class CustomersFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void dltBtnPress(ActionEvent event) {
+    }
+
+    @FXML
+    private void editBtnPress(ActionEvent event) {
+    }
+
+    @FXML
+    private void updBtnPress(ActionEvent event) {
+    }
     
 }

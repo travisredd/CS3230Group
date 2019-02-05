@@ -9,9 +9,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -21,7 +23,7 @@ import javafx.stage.Stage;
  * @author eric
  */
 public class MainMenuFXMLController implements Initializable {
-
+    /*
     private ProductsFXMLController productWindow;
     private CategoriesFXMLController categoryWindow;
     private CustomersFXMLController customerWindow;
@@ -30,7 +32,7 @@ public class MainMenuFXMLController implements Initializable {
     private Stage custStage;
     private Scene proScene;
     private Scene catScene;
-    private Scene custScene;
+    private Scene custScene;*/
     
     @FXML
     private Button mProductsBtn;
@@ -46,7 +48,8 @@ public class MainMenuFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+/*
         FXMLLoader proLoader = new FXMLLoader(getClass().getResource("ProductsFXML.fxml"));
         FXMLLoader catLoader = new FXMLLoader(getClass().getResource("CategoriesFXML.fxml"));
         FXMLLoader custLoader = new FXMLLoader(getClass().getResource("CustomersFXML.fxml"));
@@ -74,22 +77,52 @@ public class MainMenuFXMLController implements Initializable {
         
         proScene = new Scene(BorderPaneForProWindow);
         catScene = new Scene(BorderPaneForCatWindow);
-        custScene = new Scene(BorderPaneForCustWindow);
+        custScene = new Scene(BorderPaneForCustWindow);*/
     }    
     
     @FXML
     private void mProductsClicked(ActionEvent event) {
-        proStage.setScene(proScene);
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductsFXML.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));  
+            stage.setTitle("Products");
+            stage.show();
+        }catch(Exception e){
+            System.out.println("Can't load new window");
+        }
+        //proStage.setScene(proScene);
     }
 
     @FXML
     private void mCategoriesClicked(ActionEvent event) {
-        catStage.setScene(catScene);
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CategoriesFXML.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));  
+            stage.setTitle("Categories");
+            stage.show();
+        }catch(Exception e){
+            System.out.println("Can't load new window");
+        }
+        //catStage.setScene(catScene);
     }
 
     @FXML
     private void mCustomersClicked(ActionEvent event) {
-        custStage.setScene(custScene);
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CustomersFXML.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));  
+            stage.setTitle("Customers");
+            stage.show();
+        }catch(Exception e){
+            System.out.println("Can't load new window");
+        }
+        //custStage.setScene(custScene);
     }
     
 }

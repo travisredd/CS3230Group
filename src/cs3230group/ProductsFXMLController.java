@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -21,10 +22,6 @@ import javafx.scene.layout.Pane;
  */
 public class ProductsFXMLController implements Initializable {
 
-    @FXML
-    private Pane dbPane;
-    @FXML
-    private AnchorPane summaryPane;
     @FXML
     private Button dltBtn;
     @FXML
@@ -49,6 +46,12 @@ public class ProductsFXMLController implements Initializable {
     private TextField addCostBox;
     @FXML
     private Button saveBtn;
+    @FXML
+    private Pane dbPane;
+    @FXML
+    private GridPane productGrid;
+    @FXML
+    private AnchorPane summaryPane;
 
     /**
      * Initializes the controller class.
