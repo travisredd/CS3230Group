@@ -148,6 +148,7 @@ public class CategoriesFXMLController implements Initializable {
      */
     @FXML
     private void saveBtnPress(ActionEvent event) {
+        
     }
 
     /**

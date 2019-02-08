@@ -32,8 +32,8 @@ public class clsCategoriesDAO {
             ResultSet resultSet = clsDataAccess.ExecuteSQL_Query("Select * From Category");
             while(resultSet.next())
             {
-                String sCategory = resultSet.getString("Category");
-                String sDescription = resultSet.getString("sDesctiption");
+                String sCategory = resultSet.getString("CATEGORY");
+                String sDescription = resultSet.getString("DESCRIPTION");
                 clsCategories Category = new clsCategories(sCategory, sDescription);
                 lstCategory.add(Category);
             }
