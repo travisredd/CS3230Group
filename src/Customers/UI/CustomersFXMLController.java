@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs3230group;
+package Customers.UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -30,8 +29,6 @@ public class CustomersFXMLController implements Initializable {
     private TextField addNameBox;
     @FXML
     private TextField addCompBox;
-    @FXML
-    private Pane dbPane;
     @FXML
     private AnchorPane summaryPane;
     @FXML

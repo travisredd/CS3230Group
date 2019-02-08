@@ -1,7 +1,9 @@
-package cs3230group;
+package MainMenu.UI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,7 +85,7 @@ public class MainMenuFXMLController implements Initializable {
     @FXML
     private void mProductsClicked(ActionEvent event) {
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductsFXML.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Products/UI/ProductsFXML.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  
@@ -98,7 +100,7 @@ public class MainMenuFXMLController implements Initializable {
     @FXML
     private void mCategoriesClicked(ActionEvent event) {
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CategoriesFXML.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Categories/UI/CategoriesFXML.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  
@@ -113,7 +115,7 @@ public class MainMenuFXMLController implements Initializable {
     @FXML
     private void mCustomersClicked(ActionEvent event) {
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CustomersFXML.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Customers/UI/CustomersFXML.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  

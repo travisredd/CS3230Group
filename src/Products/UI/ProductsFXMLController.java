@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs3230group;
+package Products.UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,8 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -46,10 +44,6 @@ public class ProductsFXMLController implements Initializable {
     private TextField addCostBox;
     @FXML
     private Button saveBtn;
-    @FXML
-    private Pane dbPane;
-    @FXML
-    private GridPane productGrid;
     @FXML
     private AnchorPane summaryPane;
 
