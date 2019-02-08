@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs3230group;
+package MainMenu.UI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author reddt
  */
-public class CS3230Group extends Application {
+public class MainMenu extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

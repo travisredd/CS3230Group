@@ -7,7 +7,13 @@ package Categories.UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -16,6 +22,27 @@ import javafx.fxml.Initializable;
  */
 public class CategoriesFXMLController implements Initializable {
 
+    @FXML
+    private Button saveBtn;
+    @FXML
+    private TextField addCatBox;
+    @FXML
+    private TextField addDescBox;
+    @FXML
+    private Pane dbPane;
+    @FXML
+    private AnchorPane summaryPane;
+    @FXML
+    private TextField catBox;
+    @FXML
+    private TextField descBox;
+    @FXML
+    private Button dltBtn;
+    @FXML
+    private Button editBtn;
+    @FXML
+    private Button updBtn;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +50,21 @@ public class CategoriesFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void saveBtnPress(ActionEvent event) {
+    }
+
+    @FXML
+    private void dltBtnPress(ActionEvent event) {
+    }
+
+    @FXML
+    private void editBtnPress(ActionEvent event) {
+    }
+
+    @FXML
+    private void updBtnPress(ActionEvent event) {
+    }
     
 }

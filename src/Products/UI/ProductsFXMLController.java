@@ -7,7 +7,11 @@ package Products.UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -15,6 +19,33 @@ import javafx.fxml.Initializable;
  * @author erict
  */
 public class ProductsFXMLController implements Initializable {
+
+    @FXML
+    private Button dltBtn;
+    @FXML
+    private Button editBtn;
+    @FXML
+    private Button updBtn;
+    @FXML
+    private TextField prodIdBox;
+    @FXML
+    private TextField prodBox;
+    @FXML
+    private TextField descBox;
+    @FXML
+    private TextField costBox;
+    @FXML
+    private TextField addProdIdBox;
+    @FXML
+    private TextField addProdBox;
+    @FXML
+    private TextField addDescBox;
+    @FXML
+    private TextField addCostBox;
+    @FXML
+    private Button saveBtn;
+    @FXML
+    private AnchorPane summaryPane;
 
     /**
      * Initializes the controller class.
