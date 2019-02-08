@@ -1,4 +1,4 @@
-package MainMenu.UI;
+package Menu.UI;
 
 import java.io.IOException;
 import java.net.URL;
