@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -46,6 +47,10 @@ public class ProductsFXMLController implements Initializable {
     private Button saveBtn;
     @FXML
     private AnchorPane summaryPane;
+    @FXML
+    private TableView<?> sumTable;
+    @FXML
+    private TableView<?> table;
 
     /**
      * Initializes the controller class.

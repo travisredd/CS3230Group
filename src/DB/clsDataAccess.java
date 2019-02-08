@@ -20,7 +20,7 @@ public class clsDataAccess {
     /**
      * Holds the connection string to the database.
      */
-    private static final String sConnection = "jdbc:derby://localhost:1527/Employees";
+    private static final String sConnection = "jdbc:derby://localhost:1527/ManagementSystem";
     
     /**
      * Holds the database connection.
