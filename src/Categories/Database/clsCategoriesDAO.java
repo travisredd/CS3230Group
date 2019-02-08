@@ -12,34 +12,38 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author reddt
  */
-public class clsCategoriesDAO {
+public class clsCategoriesDAO 
+{
     
     /**
      * 
      * @return
      * @throws Exception 
      */
-    public static ObservableList<clsCategories> getAllCategoriesInList() throws Exception {
+    public static ObservableList<clsCategories> getAllCategoriesInList() throws Exception 
+    {
         try
         {
             List<clsCategories> List = new ArrayList<>();
-            ObservableList<clsCategories> lstCategory = FXCollections.observableList(List);
+            ObservableList<clsCategories> lstCategories = FXCollections.observableList(List);
             ResultSet resultSet = clsDataAccess.ExecuteSQL_Query("Select * From Category");
             while(resultSet.next())
             {
                 String sCategory = resultSet.getString("CATEGORY");
                 String sDescription = resultSet.getString("DESCRIPTION");
-                clsCategories Category = new clsCategories(sCategory, sDescription);
-                lstCategory.add(Category);
+                clsCategories Categories = new clsCategories(sCategory, sDescription);
+                lstCategories.add(Categories);
             }
-            return lstCategory;
+            return lstCategories;
         }
-        catch(Exception ex) {
+        catch(Exception ex) 
+        {
             throw new Exception(Thread.currentThread().getStackTrace()[1].getClassName() + "."
             + Thread.currentThread().getStackTrace()[1].getMethodName() + " -> " + ex.getMessage());
         }
@@ -53,7 +57,17 @@ public class clsCategoriesDAO {
      * 
      * @param sCategory 
      */
-    public static void DeleteCategory(String sCategory){
+    public static void DeleteCategory(String sCategory) throws Exception
+    {
+        try
+        {
+            clsDataAccess.ExecuteNonQuerySQL("Delete From Category Where CATEGORY = '" + sCategory +  "'");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(Thread.currentThread().getStackTrace()[1].getClassName() + "."
+            + Thread.currentThread().getStackTrace()[1].getMethodName() + " -> " + ex.getMessage());
+        }
         
     }
     
@@ -61,15 +75,36 @@ public class clsCategoriesDAO {
      * 
      * @param clsNewCategory 
      */
-    public static void InsertCategory(clsCategories clsNewCategory){
-        
+    public static void InsertCategory(clsCategories clsNewCategory) throws Exception
+    {
+        //testing
+        //JOptionPane.showMessageDialog(null, clsNewCategory.getsCategory());
+        try
+        {
+            clsDataAccess.ExecuteNonQuerySQL("INSERT INTO CATEGORY (CATEGORY, DESCRIPTION) VALUES ('"
+                    + clsNewCategory.getsCategory() + "','" 
+                    + clsNewCategory.getsDescription() + "')");
+        }
+        catch (Exception ex) 
+        {
+            throw new Exception(Thread.currentThread().getStackTrace()[1].getClassName() + "."
+            + Thread.currentThread().getStackTrace()[1].getMethodName() + " -> " + ex.getMessage());
+        }
     }
     
     /**
      * 
      * @param clsCategory 
      */
-    public static void UpdateCategory(clsCategories clsCategory){
-        
+    public static void UpdateCategory(clsCategories clsCategory)
+    {
+        try
+        {
+            
+        }
+        catch (Exception ex) 
+        {
+      
+        }
     }
 }

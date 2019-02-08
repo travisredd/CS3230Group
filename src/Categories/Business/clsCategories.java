@@ -27,7 +27,8 @@ public class clsCategories {
     /**
      * Constructor
      */
-    public clsCategories() {
+    public clsCategories() 
+    {
         sCategory = new SimpleStringProperty("");
         sDescription = new SimpleStringProperty("");
     }
@@ -37,7 +38,8 @@ public class clsCategories {
      * @param Category
      * @param Description 
      */
-    public clsCategories(String Category, String Description){
+    public clsCategories(String Category, String Description)
+    {
         sCategory = new SimpleStringProperty(Category);
         sDescription = new SimpleStringProperty(Description);
     }
@@ -46,7 +48,8 @@ public class clsCategories {
      * Returns gets sCategory and sDescriptions string data
      * @return 
      */
-    public String toString() {
+    public String toString() 
+    {
         return "Category =" + sCategory.get() + ", Description =" +
                 sDescription.get();
     }
@@ -55,7 +58,8 @@ public class clsCategories {
      * gets the category and returns sCategory
      * @return 
      */
-    public String getsCategory() {
+    public String getsCategory() 
+    {
         return sCategory.get();
     }
     
@@ -63,7 +67,8 @@ public class clsCategories {
      * sets the category passed in to the clsCategories sCategory
      * @param sCategory 
      */
-    public void setsCategory(String sCategory) {
+    public void setsCategory(String sCategory) 
+    {
         this.sCategory.set(sCategory);
     }
     
@@ -71,7 +76,8 @@ public class clsCategories {
      * Returns sCategoryProperty
      * @return 
      */
-    public StringProperty sCategoryProperty() {
+    public StringProperty sCategoryProperty() 
+    {
         return sCategory;
     }
     
@@ -79,7 +85,8 @@ public class clsCategories {
      * Gets the description and returns sDescription
      * @return 
      */
-    public String getsDescription() {
+    public String getsDescription() 
+    {
         return sDescription.get();
     }
     
@@ -87,7 +94,8 @@ public class clsCategories {
      * setsDescription sDescription passed in to clsCategories sDescription
      * @param sDescription 
      */
-    public void setsDescription(String sDescription) {
+    public void setsDescription(String sDescription) 
+    {
         this.sDescription.set(sDescription);
     }
     
@@ -95,7 +103,8 @@ public class clsCategories {
      * returns sDescription StringProperty
      * @return 
      */
-    public StringProperty sDescriptionProperty() {
+    public StringProperty sDescriptionProperty() 
+    {
         return sDescription;
     }
 }

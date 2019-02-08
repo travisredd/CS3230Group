@@ -16,7 +16,8 @@ import java.sql.Statement;
  *
  * @author reddt
  */
-public class clsDataAccess {
+public class clsDataAccess 
+{
     /**
      * Holds the connection string to the database.
      */
@@ -90,7 +91,6 @@ public class clsDataAccess {
     {
         //The result of the SQL query
         ResultSet resultSet = null;
-        
         try
         {
             //Connect to the DB
@@ -105,7 +105,6 @@ public class clsDataAccess {
                 //Execute the SQL statement
                 resultSet = stmtSQL.executeQuery(sSQL);
             }
-            
         } 
         catch (SQLException ex)
         {
