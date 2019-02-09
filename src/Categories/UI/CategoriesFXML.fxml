@@ -32,7 +32,7 @@
       </Label>
       <Pane fx:id="dbPane" layoutX="14.0" layoutY="81.0" prefHeight="334.0" prefWidth="358.0">
          <children>
-            <TableView fx:id="table" prefHeight="334.0" prefWidth="358.0">
+            <TableView fx:id="table" onKeyReleased="#tableKeyPress" onMouseClicked="#tableClick" prefHeight="334.0" prefWidth="358.0">
                <columns>
                   <TableColumn fx:id="colCategoryTable" prefWidth="75.0" text="Category" />
                   <TableColumn fx:id="colDescriptionTable" prefWidth="75.0" text="Description" />

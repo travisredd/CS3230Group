@@ -16,13 +16,12 @@ import javafx.stage.Stage;
  * @author reddt
  */
 public class MainMenu extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("MainMenuFXML.fxml"));
         root.getStylesheets().add(getClass().getResource("darkTheme.css").toExternalForm());
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
     }
@@ -32,6 +31,5 @@ public class MainMenu extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-    }
-    
+    } 
 }

@@ -7,6 +7,7 @@ package Categories.UI;
 
 import Categories.Business.clsCategories;
 import Categories.Database.clsCategoriesDAO;
+import com.sun.glass.ui.Cursor;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -18,8 +19,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -137,6 +142,7 @@ public class CategoriesFXMLController implements Initializable
      */
     private ObservableList<clsCategories> lstCategories;
     
+    
     /**
      * 
      */
@@ -151,8 +157,10 @@ public class CategoriesFXMLController implements Initializable
         // TODO
         try
         {
-            newCategory = new clsCategories();
+            catBox.editableProperty().set(false);
+            descBox.editableProperty().set(false);
             
+            newCategory = new clsCategories();
             lstCategories = clsCategoriesDAO.getAllCategoriesInList();
             colCategoryTable.setCellValueFactory(new PropertyValueFactory<>("sCategory"));
             colDescriptionTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
@@ -164,6 +172,8 @@ public class CategoriesFXMLController implements Initializable
         }
     }    
 
+
+    
     /**
      * 
      * @param event 
@@ -179,6 +189,9 @@ public class CategoriesFXMLController implements Initializable
                 clsCategoriesDAO.InsertCategory(clsNewCategory);
                 lstCategories = clsCategoriesDAO.getAllCategoriesInList();
                 table.setItems(lstCategories);
+                
+                addCatBox.setText("");
+                addDescBox.setText("");
             }
         }
         catch(Exception ex)
@@ -204,6 +217,8 @@ public class CategoriesFXMLController implements Initializable
                 clsCategoriesDAO.DeleteCategory(table.getSelectionModel().getSelectedItem().getsCategory());
                 lstCategories = clsCategoriesDAO.getAllCategoriesInList();
                 table.setItems(lstCategories);
+                catBox.setText("");
+                descBox.setText("");
             }
 
         }
@@ -222,8 +237,10 @@ public class CategoriesFXMLController implements Initializable
     {
         try
         {
-            //tied to clsCategoriesDAO to edit the selected category
-            clsCategoriesDAO.InsertCategory(newCategory);
+            descBox.editableProperty().set(true);
+            //catBox.editableProperty().set(true);
+            //catBox.requestFocus();
+            
         }
         catch(Exception ex) 
         {
@@ -239,10 +256,20 @@ public class CategoriesFXMLController implements Initializable
     @FXML
     private void updBtnPress(ActionEvent event) 
     {
+        
         try
         {
-            //tied to clsCategoriesDAO to update the selected category
-            clsCategoriesDAO.UpdateCategory(newCategory);
+            clsCategories clsSelectedCategory = table.getSelectionModel().getSelectedItem();
+            
+            if(clsSelectedCategory != null && catBox.getText().equals("") == false && descBox.getText().equals("") == false) 
+            {
+                //clsSelectedCategory.setsCategory(catBox.getText());
+                clsSelectedCategory.setsDescription(descBox.getText());
+                clsCategoriesDAO.UpdateCategory(clsSelectedCategory);
+                lstCategories = clsCategoriesDAO.getAllCategoriesInList();
+                table.setItems(lstCategories);
+            }
+
         }
         catch(Exception ex) 
         {
@@ -263,5 +290,27 @@ public class CategoriesFXMLController implements Initializable
                 sMethod + " -> " + sExceptionMessage;
         JOptionPane.showConfirmDialog(null, sMessage, "Exception", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
     }
-    
+
+    /**
+     * 
+     * @param event 
+     */
+    @FXML
+    private void tableClick(MouseEvent event) 
+    {
+        catBox.setText(table.getSelectionModel().getSelectedItem().getsCategory());
+        descBox.setText(table.getSelectionModel().getSelectedItem().getsDescription());
+    }
+
+    /**
+     * 
+     * @param event 
+     */
+    @FXML
+    private void tableKeyPress(KeyEvent event) 
+    {
+        catBox.setText(table.getSelectionModel().getSelectedItem().getsCategory());
+        descBox.setText(table.getSelectionModel().getSelectedItem().getsDescription());
+    }
+
 }

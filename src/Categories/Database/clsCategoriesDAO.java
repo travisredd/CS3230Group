@@ -96,15 +96,18 @@ public class clsCategoriesDAO
      * 
      * @param clsCategory 
      */
-    public static void UpdateCategory(clsCategories clsCategory)
+    public static void UpdateCategory(clsCategories clsSelectedCategory) throws Exception
     {
         try
         {
-            
+            clsDataAccess.ExecuteNonQuerySQL("UPDATE CATEGORY SET DESCRIPTION = '" + clsSelectedCategory.getsDescription() 
+                    + "'WHERE CATEGORY = '" + clsSelectedCategory.getsCategory() + "'");
+
         }
         catch (Exception ex) 
         {
-      
+            throw new Exception(Thread.currentThread().getStackTrace()[1].getClassName() + "."
+            + Thread.currentThread().getStackTrace()[1].getMethodName() + " -> " + ex.getMessage());
         }
     }
 }

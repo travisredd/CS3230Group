@@ -1,5 +1,6 @@
 package Menu.UI;
 
+import Categories.UI.CategoriesFXMLController;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -81,6 +82,7 @@ public class MainMenuFXMLController implements Initializable {
         catScene = new Scene(BorderPaneForCatWindow);
         custScene = new Scene(BorderPaneForCustWindow);*/
     }    
+
     
     @FXML
     private void mProductsClicked(ActionEvent event) {
@@ -105,7 +107,7 @@ public class MainMenuFXMLController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  
             stage.setTitle("Categories");
-            stage.show();
+            stage.show(); 
         }catch(Exception e){
             System.out.println("Can't load new window");
         }
