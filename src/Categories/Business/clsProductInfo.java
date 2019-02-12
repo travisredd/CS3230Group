@@ -5,6 +5,8 @@
  */
 package Categories.Business;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -12,82 +14,118 @@ import javafx.beans.property.StringProperty;
  *
  * @author reddt
  */
-public class clsCategories {
+public class clsProductInfo {
     
     /**
-     * sCategory - holds the category name
+     * 
      */
-    private StringProperty sCategory;
+    private IntegerProperty iProductID;
+    
+    /**
+     * 
+     */
+    private StringProperty sProducts;
     
     /**
      * sDescription - holds the description
      */
     private StringProperty sDescription;
     
-
-    
-    
     
     /**
      * Constructor
      */
-    public clsCategories() 
+    public clsProductInfo() 
     {
-        sCategory = new SimpleStringProperty("");
+        iProductID = new SimpleIntegerProperty(0);
         sDescription = new SimpleStringProperty("");
+        sProducts = new SimpleStringProperty("");
     }
     
+    
     /**
-     * Overloaded Constructor
-     * @param Category
+     * 
+     * @param ProductID
+     * @param Product
      * @param Description 
      */
-    public clsCategories(String Category, String Description)
+    public clsProductInfo(int ProductID, String Product, String Description)
     {
-        sCategory = new SimpleStringProperty(Category);
+        iProductID = new SimpleIntegerProperty(ProductID);
+        sProducts = new SimpleStringProperty(Product);
         sDescription = new SimpleStringProperty(Description);
     }
     
-
     
-    /**
+    
+        /**
      * Returns gets sCategory and sDescriptions string data
      * @return 
      */
     public String toString() 
     {
-        return "Category =" + sCategory.get() + ", Description =" +
-                sDescription.get();
+        return "ProductID =" + iProductID.get() + 
+             ",  Product =" + sProducts.get() + 
+              ", Description =" + sDescription.get();
     }
     
     /**
      * gets the category and returns sCategory
      * @return 
      */
-    public String getsCategory() 
+    public int getsProductID() 
     {
-        return sCategory.get();
+        return iProductID.get();
     }
     
     /**
      * sets the category passed in to the clsCategories sCategory
      * @param sCategory 
      */
-    public void setsCategory(String sCategory) 
+    public void setsProductID(int iProductID) 
     {
-        this.sCategory.set(sCategory);
+        this.iProductID.set(iProductID);
     }
     
     /**
      * Returns sCategoryProperty
      * @return 
      */
-    public StringProperty sCategoryProperty() 
+    public IntegerProperty iProductIDProperty() 
     {
-        return sCategory;
+        return iProductID;
     }
     
     /**
+     * Gets the description and returns sDescription
+     * @return 
+     */
+    public String getsProducts() 
+    {
+        return sProducts.get();
+    }
+    
+    /**
+     * setsDescription sDescription passed in to clsCategories sDescription
+     * @param sDescription 
+     */
+    public void setsProducts(String sProducts) 
+    {
+        this.sProducts.set(sProducts);
+    }
+    
+    /**
+     * returns sDescription StringProperty
+     * @return 
+     */
+    public StringProperty sProductsProperty() 
+    {
+        return sProducts;
+    }
+    
+    
+    
+        /**
      * Gets the description and returns sDescription
      * @return 
      */

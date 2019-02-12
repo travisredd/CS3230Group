@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Categories.Database;
-
+import Categories.Business.clsProductInfo;
 import Categories.Business.clsCategories;
 import DB.clsDataAccess;
 import java.sql.ResultSet;
@@ -41,6 +41,40 @@ public class clsCategoriesDAO
                 lstCategories.add(Categories);
             }
             return lstCategories;
+        }
+        catch(Exception ex) 
+        {
+            throw new Exception(Thread.currentThread().getStackTrace()[1].getClassName() + "."
+            + Thread.currentThread().getStackTrace()[1].getMethodName() + " -> " + ex.getMessage());
+        }
+        finally
+        {
+            clsDataAccess.dbDisconnect();
+        }
+    }
+    
+    /**
+     * 
+     * @return
+     * @throws Exception 
+     */
+    public static ObservableList<clsProductInfo> getAllProductsInList(String sCategory) throws Exception 
+    {
+        try
+        {
+            List<clsProductInfo> ProductList = new ArrayList<>();
+            ObservableList<clsProductInfo> lstProductInfo = FXCollections.observableList(ProductList);
+            ResultSet resultSet = clsDataAccess.ExecuteSQL_Query("Select * From Product Where CATEGORY = '" + sCategory +  "'");
+            while(resultSet.next())
+            {
+                String iProductID = resultSet.getString("PRODUCTID");
+                String sProduct = resultSet.getString("PRODUCT");
+                String sDescription = resultSet.getString("DESCRIPTION");
+                clsProductInfo ProductData = new clsProductInfo(Integer.parseInt(iProductID), sProduct,sDescription);
+          
+                lstProductInfo.add(ProductData);
+            }
+            return lstProductInfo;
         }
         catch(Exception ex) 
         {

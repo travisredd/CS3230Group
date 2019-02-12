@@ -239,6 +239,7 @@ public class CategoriesFXMLController implements Initializable
                 clsCategoriesDAO.DeleteCategory(table.getSelectionModel().getSelectedItem().getsCategory());
                 lstCategories = clsCategoriesDAO.getAllCategoriesInList();
                 table.setItems(lstCategories);
+                sumTable.setItems(lstProductInfo);
                 catBox.setText("");
                 descBox.setText("");
             }
