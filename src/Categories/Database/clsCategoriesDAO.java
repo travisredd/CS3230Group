@@ -15,14 +15,14 @@ import javafx.collections.ObservableList;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *clsCategoriesDAO to hold the database business logic
  * @author reddt
  */
 public class clsCategoriesDAO 
 {
     
     /**
-     * 
+     * Create an obserableList to be able to load into the tableView, gets all categories from database with help of the dataAccessClass then creates a list of objects.
      * @return
      * @throws Exception 
      */
@@ -54,7 +54,7 @@ public class clsCategoriesDAO
     }
     
     /**
-     * 
+     * Create an obserableList to be able to load into the tableView, gets all product info from database with help of the dataAccessClass then creates a list of objects.
      * @return
      * @throws Exception 
      */
@@ -88,7 +88,7 @@ public class clsCategoriesDAO
     }
     
     /**
-     * 
+     * Uses clsDataAcccess class to delete specified category,if it is empty
      * @param sCategory 
      */
     public static void DeleteCategory(String sCategory) throws Exception
@@ -106,7 +106,7 @@ public class clsCategoriesDAO
     }
     
     /**
-     * 
+     * Inserts specified category, using dataAccessClass to retrieve information from the DB
      * @param clsNewCategory 
      */
     public static void InsertCategory(clsCategories clsNewCategory) throws Exception
@@ -127,7 +127,7 @@ public class clsCategoriesDAO
     }
     
     /**
-     * 
+     * Updates specified category, using dataAccessClass to retrieve information from the DB
      * @param clsCategory 
      */
     public static void UpdateCategory(clsCategories clsSelectedCategory) throws Exception

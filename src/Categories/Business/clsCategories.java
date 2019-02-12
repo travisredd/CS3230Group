@@ -9,7 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- *
+ *clsCategories a class to load the category object
  * @author reddt
  */
 public class clsCategories {
@@ -24,10 +24,6 @@ public class clsCategories {
      */
     private StringProperty sDescription;
     
-
-    
-    
-    
     /**
      * Constructor
      */
@@ -38,7 +34,7 @@ public class clsCategories {
     }
     
     /**
-     * Overloaded Constructor
+     * Overloaded Constructor passes in category and description
      * @param Category
      * @param Description 
      */

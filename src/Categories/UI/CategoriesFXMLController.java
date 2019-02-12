@@ -35,128 +35,131 @@ import javax.swing.JOptionPane;
 public class CategoriesFXMLController implements Initializable 
 {
 
-    /**
-     * 
-     */
-    @FXML
-    private Button saveBtn;
+
     
     /**
-     * 
+     * txtField to hold the new category name
      */
     @FXML
     private TextField addCatBox;
     
     /**
-     * 
+     * textField to hold the new description 
      */
     @FXML
     private TextField addDescBox;
     
-    /**
-     * 
-     */
-    @FXML
-    private Pane dbPane;
     
     /**
-     * 
-     */
-    @FXML
-    private AnchorPane summaryPane;
-    
-    /**
-     * 
+     * texField to hold the category
      */
     @FXML
     private TextField catBox;
     
     /**
-     * 
+     * textField to hold the description
      */
     @FXML
     private TextField descBox;
+
     
     /**
-     * 
-     */
-    @FXML
-    private Button dltBtn;
-    
-    /**
-     * 
-     */
-    @FXML
-    private Button editBtn;
-    
-    /**
-     * 
-     */
-    @FXML
-    private Button updBtn;
-    
-    /**
-     * 
+     * top table with categories and description
      */
     @FXML
     private TableView<clsCategories> table;
     
     /**
-     * 
+     * bottom table with productId, Product and Description
      */
     @FXML
     private TableView<clsProductInfo> sumTable;
     
     /**
-     * 
+     * table column set to clsCategories and string
      */
     @FXML
     private TableColumn<clsCategories, String> colCategoryTable;
     
     /**
-     * 
+     * table column set to clsCategories and string
      */
     @FXML
     private TableColumn<clsCategories, String> colDescriptionTable;
     
     /**
-     * 
+     * table column set to clsProductInfo and string
      */
     @FXML
     private TableColumn<clsProductInfo, String> colProductIDSumTable;
     
     /**
-     * 
+     * table column set to clsProductInfo and string
      */
     @FXML
     private TableColumn<clsProductInfo, String> colProductSumTable;
     
     /**
-     * 
+     * table column set to clsProductInfo and string
      */
     @FXML
     private TableColumn<clsProductInfo, String> colDescriptionSumTable;
     
     /**
-     * 
+     * Holds a list of categories to display
      */
     private ObservableList<clsCategories> lstCategories;
     
-      /**
-     * 
+    /**
+     * Holds a list of products to display
      */
     private ObservableList<clsProductInfo> lstProductInfo;
     
-    
     /**
-     * 
+     * Create a clsCategories object
      */
     clsCategories newCategory;
     
     /**
-     * 
+     * Create a clsProductsIno object
      */
     clsProductInfo newProductInfo;
+    
+    /**
+     * Variable created by scene builder
+     */
+    @FXML
+    private Button saveBtn;
+    
+    /**
+     * Variable created by scene builder
+     */
+    @FXML
+    private Pane dbPane;
+    
+    /**
+     * Variable created by scene builder
+     */
+    @FXML
+    private AnchorPane summaryPane;
+    
+    /**
+     * Variable created by scene builder
+     */
+    @FXML
+    private Button dltBtn;
+    
+    /**
+     * Variable created by scene builder
+     */
+    @FXML
+    private Button editBtn;
+    
+    /**
+     * Variable created by scene builder
+     */
+    @FXML
+    private Button updBtn;
 
     /**
      * Initializes the controller class.
@@ -194,10 +197,8 @@ public class CategoriesFXMLController implements Initializable
         }
     }    
 
-
-    
     /**
-     * 
+     * Save button press, will add new category
      * @param event 
      */
     @FXML
@@ -223,7 +224,7 @@ public class CategoriesFXMLController implements Initializable
     }
 
     /**
-     * 
+     * delete button press - deletes specified category as long as that cat is empty.
      * @param event 
      */
     @FXML
@@ -233,7 +234,9 @@ public class CategoriesFXMLController implements Initializable
         //JOptionPane.showConfirmDialog(null, table.getSelectionModel().getSelectedItem().getsCategory());
         try
         {
-            if(table.getSelectionModel().getSelectedItem().getsCategory() != null)
+            
+            lstProductInfo = clsCategoriesDAO.getAllProductsInList(table.getSelectionModel().getSelectedItem().getsCategory());
+            if(table.getSelectionModel().getSelectedItem().getsCategory() != null && lstProductInfo.isEmpty())
             {
                 //tied to clsCategoriesDAO to delete the selected category
                 clsCategoriesDAO.DeleteCategory(table.getSelectionModel().getSelectedItem().getsCategory());
@@ -242,6 +245,9 @@ public class CategoriesFXMLController implements Initializable
                 sumTable.setItems(lstProductInfo);
                 catBox.setText("");
                 descBox.setText("");
+            }
+            else {
+                throw new Exception("Cannot delete Category with products");
             }
 
         }
@@ -252,7 +258,7 @@ public class CategoriesFXMLController implements Initializable
     }
 
     /**
-     * 
+     * edit button press - makes the description editable. 
      * @param event 
      */
     @FXML
@@ -273,7 +279,7 @@ public class CategoriesFXMLController implements Initializable
     }
 
     /**
-     * 
+     * Update button press - updates the new description in database
      * @param event 
      */
     @FXML
@@ -302,7 +308,7 @@ public class CategoriesFXMLController implements Initializable
     }
     
     /**
-     * 
+     * Handles the errors. 
      * @param sClass
      * @param sMethod
      * @param sExceptionMessage 
@@ -315,7 +321,7 @@ public class CategoriesFXMLController implements Initializable
     }
 
     /**
-     * 
+     * Mouse click event on the table. 
      * @param event 
      */
     @FXML
@@ -335,14 +341,22 @@ public class CategoriesFXMLController implements Initializable
 
     
     /**
-     * 
+     * Key press event on the table. 
      * @param event 
      */
     @FXML
-    private void tableKeyPress(KeyEvent event) 
+    private void tableKeyPress(KeyEvent event) throws Exception 
     {
         catBox.setText(table.getSelectionModel().getSelectedItem().getsCategory());
         descBox.setText(table.getSelectionModel().getSelectedItem().getsDescription());
+        
+        lstProductInfo = clsCategoriesDAO.getAllProductsInList(table.getSelectionModel().getSelectedItem().getsCategory());
+        
+        colProductIDSumTable.setCellValueFactory(new PropertyValueFactory<>("iProductID"));
+        colProductSumTable.setCellValueFactory(new PropertyValueFactory<>("sProducts"));
+        colDescriptionSumTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
+            
+        sumTable.setItems(lstProductInfo);
     }
 
 }

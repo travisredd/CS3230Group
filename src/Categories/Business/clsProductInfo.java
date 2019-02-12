@@ -11,18 +11,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- *
+ *clsProductInfo class to load the product info object
  * @author reddt
  */
 public class clsProductInfo {
     
     /**
-     * 
+     * iProductId to hold the productId from dataset
      */
     private IntegerProperty iProductID;
     
     /**
-     * 
+     * sProduct to hold the product string from dataset
      */
     private StringProperty sProducts;
     
@@ -30,7 +30,6 @@ public class clsProductInfo {
      * sDescription - holds the description
      */
     private StringProperty sDescription;
-    
     
     /**
      * Constructor
@@ -41,10 +40,9 @@ public class clsProductInfo {
         sDescription = new SimpleStringProperty("");
         sProducts = new SimpleStringProperty("");
     }
-    
-    
+
     /**
-     * 
+     * Overloaded Constructor - passing in productId, product, and description
      * @param ProductID
      * @param Product
      * @param Description 
@@ -55,11 +53,9 @@ public class clsProductInfo {
         sProducts = new SimpleStringProperty(Product);
         sDescription = new SimpleStringProperty(Description);
     }
-    
-    
-    
-        /**
-     * Returns gets sCategory and sDescriptions string data
+
+    /**
+     * Returns string data
      * @return 
      */
     public String toString() 
@@ -70,7 +66,7 @@ public class clsProductInfo {
     }
     
     /**
-     * gets the category and returns sCategory
+     * Returns productID
      * @return 
      */
     public int getsProductID() 
@@ -79,7 +75,7 @@ public class clsProductInfo {
     }
     
     /**
-     * sets the category passed in to the clsCategories sCategory
+     * sets the ProductID
      * @param sCategory 
      */
     public void setsProductID(int iProductID) 
@@ -88,7 +84,7 @@ public class clsProductInfo {
     }
     
     /**
-     * Returns sCategoryProperty
+     * Returns iProductID
      * @return 
      */
     public IntegerProperty iProductIDProperty() 
@@ -97,7 +93,7 @@ public class clsProductInfo {
     }
     
     /**
-     * Gets the description and returns sDescription
+     * Returns the product
      * @return 
      */
     public String getsProducts() 
@@ -106,7 +102,7 @@ public class clsProductInfo {
     }
     
     /**
-     * setsDescription sDescription passed in to clsCategories sDescription
+     * sets product info
      * @param sDescription 
      */
     public void setsProducts(String sProducts) 
@@ -115,7 +111,7 @@ public class clsProductInfo {
     }
     
     /**
-     * returns sDescription StringProperty
+     * returns product property
      * @return 
      */
     public StringProperty sProductsProperty() 
@@ -123,9 +119,7 @@ public class clsProductInfo {
         return sProducts;
     }
     
-    
-    
-        /**
+    /**
      * Gets the description and returns sDescription
      * @return 
      */
