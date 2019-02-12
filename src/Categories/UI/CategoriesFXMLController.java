@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Categories.UI;
-
+import Categories.Business.clsProductInfo;
 import Categories.Business.clsCategories;
 import Categories.Database.clsCategoriesDAO;
 import com.sun.glass.ui.Cursor;
@@ -105,7 +105,7 @@ public class CategoriesFXMLController implements Initializable
      * 
      */
     @FXML
-    private TableView<clsCategories> sumTable;
+    private TableView<clsProductInfo> sumTable;
     
     /**
      * 
@@ -123,30 +123,40 @@ public class CategoriesFXMLController implements Initializable
      * 
      */
     @FXML
-    private TableColumn<clsCategories, String> colProductIDSumTable;
+    private TableColumn<clsProductInfo, String> colProductIDSumTable;
     
     /**
      * 
      */
     @FXML
-    private TableColumn<clsCategories, String> colProductSumTable;
+    private TableColumn<clsProductInfo, String> colProductSumTable;
     
     /**
      * 
      */
     @FXML
-    private TableColumn<clsCategories, String> colDescriptionSumTable;
+    private TableColumn<clsProductInfo, String> colDescriptionSumTable;
     
     /**
      * 
      */
     private ObservableList<clsCategories> lstCategories;
     
+      /**
+     * 
+     */
+    private ObservableList<clsProductInfo> lstProductInfo;
+    
     
     /**
      * 
      */
     clsCategories newCategory;
+    
+    /**
+     * 
+     */
+    clsProductInfo newProductInfo;
 
     /**
      * Initializes the controller class.
@@ -160,11 +170,23 @@ public class CategoriesFXMLController implements Initializable
             catBox.editableProperty().set(false);
             descBox.editableProperty().set(false);
             
+            
             newCategory = new clsCategories();
             lstCategories = clsCategoriesDAO.getAllCategoriesInList();
+            
+            newProductInfo = new clsProductInfo();
+            //lstProductInfo = clsCategoriesDAO.getAllProductsInList();
+            
             colCategoryTable.setCellValueFactory(new PropertyValueFactory<>("sCategory"));
             colDescriptionTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
+            
             table.setItems(lstCategories);
+            
+            //colProductIDSumTable.setCellValueFactory(new PropertyValueFactory<>("iProductID"));
+            //colProductSumTable.setCellValueFactory(new PropertyValueFactory<>("sProducts"));
+            //colDescriptionSumTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
+            
+            //sumTable.setItems(lstProductInfo);
         }
         catch(Exception ex)
         {
@@ -296,12 +318,21 @@ public class CategoriesFXMLController implements Initializable
      * @param event 
      */
     @FXML
-    private void tableClick(MouseEvent event) 
+    private void tableClick(MouseEvent event) throws Exception 
     {
         catBox.setText(table.getSelectionModel().getSelectedItem().getsCategory());
         descBox.setText(table.getSelectionModel().getSelectedItem().getsDescription());
+        
+        lstProductInfo = clsCategoriesDAO.getAllProductsInList(table.getSelectionModel().getSelectedItem().getsCategory());
+        
+        colProductIDSumTable.setCellValueFactory(new PropertyValueFactory<>("iProductID"));
+        colProductSumTable.setCellValueFactory(new PropertyValueFactory<>("sProducts"));
+        colDescriptionSumTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
+            
+        sumTable.setItems(lstProductInfo);
     }
 
+    
     /**
      * 
      * @param event 
