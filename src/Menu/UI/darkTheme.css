@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 .root{
-    -fx-background-color: darkslategrey;
+    -fx-background-color: rgb(66,66,66);
 }
 
 .button{
@@ -20,3 +20,17 @@ and open the template in the editor.
 .label{
     -fx-text-fill: white;
 }
+
+.titled-pane{
+    -fx-collapsible: false;    
+}
+
+#back{
+    -fx-background-color: rgb(50,50,50);
+}
+
+
+.table-column{
+    -fx-background-color: rgb(50,50,50);
+    -fx-text-fill: white;
+} 
