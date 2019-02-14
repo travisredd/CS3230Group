@@ -7,9 +7,11 @@ package Products.UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -46,6 +48,8 @@ public class ProductsFXMLController implements Initializable {
     @FXML
     private Button saveBtn;
     @FXML
+    private ComboBox<?> addCatBox;
+    @FXML
     private AnchorPane summaryPane;
     @FXML
     private TableView<?> sumTable;
@@ -59,5 +63,21 @@ public class ProductsFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void dltBtnPress(ActionEvent event) {
+    }
+
+    @FXML
+    private void editBtnPress(ActionEvent event) {
+    }
+
+    @FXML
+    private void updBtnPress(ActionEvent event) {
+    }
+
+    @FXML
+    private void saveBtnPress(ActionEvent event) {
+    }
     
 }

@@ -7,7 +7,6 @@ package Customers.UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,6 +33,8 @@ public class CustomersFXMLController implements Initializable {
     @FXML
     private AnchorPane summaryPane;
     @FXML
+    private TableView<?> sumTable;
+    @FXML
     private TextField custBox;
     @FXML
     private TextField nameBox;
@@ -46,8 +47,6 @@ public class CustomersFXMLController implements Initializable {
     @FXML
     private Button updBtn;
     @FXML
-    private TableView<?> sumTable;
-    @FXML
     private TableView<?> table;
 
     /**
@@ -57,6 +56,10 @@ public class CustomersFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void saveBtnPress(ActionEvent event) {
+    }
 
     @FXML
     private void dltBtnPress(ActionEvent event) {

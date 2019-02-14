@@ -89,6 +89,7 @@ public class MainMenuFXMLController implements Initializable {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Products/UI/ProductsFXML.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            root1.getStylesheets().add(getClass().getResource("darkTheme.css").toExternalForm());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  
             stage.setTitle("Products");
@@ -104,6 +105,7 @@ public class MainMenuFXMLController implements Initializable {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Categories/UI/CategoriesFXML.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            root1.getStylesheets().add(getClass().getResource("darkTheme.css").toExternalForm());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  
             stage.setTitle("Categories");
@@ -119,6 +121,7 @@ public class MainMenuFXMLController implements Initializable {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Customers/UI/CustomersFXML.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            root1.getStylesheets().add(getClass().getResource("darkTheme.css").toExternalForm());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  
             stage.setTitle("Customers");
