@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -360,3 +361,79 @@ public class CategoriesFXMLController implements Initializable
     }
 
 }
+=======
+package Categories.UI;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+public class CategoriesFXMLController {
+
+    private Stage main;
+    private Stage cat;
+    
+    @FXML
+    private Button saveBtn;
+
+    @FXML
+    private TextField addCatBox;
+
+    @FXML
+    private TextField addDescBox;
+
+    @FXML
+    private Pane dbPane;
+
+    @FXML
+    private TableView<?> table;
+
+    @FXML
+    private AnchorPane summaryPane;
+
+    @FXML
+    private TableView<?> sumTable;
+
+    @FXML
+    private TextField catBox;
+
+    @FXML
+    private TextField descBox;
+
+    @FXML
+    private Button dltBtn;
+
+    @FXML
+    private Button editBtn;
+
+    @FXML
+    private Button updBtn;
+
+    @FXML
+    void dltBtnPress(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editBtnPress(ActionEvent event) {
+
+    }
+
+    @FXML
+    void saveBtnPress(ActionEvent event) {
+
+    }
+
+    @FXML
+    void updBtnPress(ActionEvent event) {
+
+    }
+
+}
+>>>>>>> Don't have to minimize main window
