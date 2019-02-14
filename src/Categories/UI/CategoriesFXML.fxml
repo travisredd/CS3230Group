@@ -14,12 +14,12 @@
    <children>
       <TitledPane animated="false" collapsible="false" layoutX="387.0" layoutY="443.0" prefHeight="251.0" prefWidth="301.0" text="Add Category">
          <content>
-            <AnchorPane id="back" minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="299.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="299.0">
                <children>
                   <Button fx:id="saveBtn" layoutX="84.0" layoutY="157.0" mnemonicParsing="false" onAction="#saveBtnPress" text="Save New Category" />
                   <Label layoutX="33.0" layoutY="103.0" text="Description:" />
-                  <TextField fx:id="addCatBox" layoutX="115.0" layoutY="43.0" prefWidth="150.0" />
-                  <TextField fx:id="addDescBox" layoutX="115.0" layoutY="99.0" prefWidth="150.0" />
+                  <TextField fx:id="addCatBox" layoutX="115.0" layoutY="43.0" />
+                  <TextField fx:id="addDescBox" layoutX="115.0" layoutY="99.0" />
                   <Label layoutX="47.0" layoutY="47.0" text="Category:" />
                </children>
             </AnchorPane>
@@ -32,11 +32,7 @@
       </Label>
       <Pane fx:id="dbPane" layoutX="14.0" layoutY="81.0" prefHeight="334.0" prefWidth="358.0">
          <children>
-<<<<<<< HEAD
             <TableView fx:id="table" onKeyReleased="#tableKeyPress" onMouseClicked="#tableClick" prefHeight="334.0" prefWidth="358.0">
-=======
-            <TableView id="back" fx:id="table" prefHeight="334.0" prefWidth="358.0">
->>>>>>> Don't have to minimize main window
                <columns>
                   <TableColumn fx:id="colCategoryTable" prefWidth="75.0" text="Category" />
                   <TableColumn fx:id="colDescriptionTable" prefWidth="75.0" text="Description" />
@@ -50,11 +46,7 @@
          <content>
             <AnchorPane fx:id="summaryPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-<<<<<<< HEAD
                   <TableView fx:id="sumTable" prefHeight="306.0" prefWidth="358.0">
-=======
-                  <TableView id="back" fx:id="sumTable" prefHeight="306.0" prefWidth="358.0">
->>>>>>> Don't have to minimize main window
                      <columns>
                         <TableColumn fx:id="colProductIDSumTable" prefWidth="75.0" text="Product ID" />
                         <TableColumn fx:id="colProductSumTable" prefWidth="75.0" text="Product" />
@@ -69,11 +61,11 @@
       </TitledPane>
       <TitledPane animated="false" collapsible="false" layoutX="387.0" layoutY="81.0" prefHeight="251.0" prefWidth="301.0" text="Selected Category">
          <content>
-            <AnchorPane id="back" minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="299.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="299.0">
                <children>
                   <Label layoutX="33.0" layoutY="103.0" text="Description:" />
-                  <TextField fx:id="catBox" layoutX="115.0" layoutY="43.0" prefWidth="150.0" />
-                  <TextField fx:id="descBox" layoutX="115.0" layoutY="99.0" prefWidth="150.0" />
+                  <TextField fx:id="catBox" layoutX="115.0" layoutY="43.0" />
+                  <TextField fx:id="descBox" layoutX="115.0" layoutY="99.0" />
                   <Label layoutX="47.0" layoutY="47.0" text="Category:" />
                   <Button fx:id="dltBtn" layoutX="25.0" layoutY="163.0" mnemonicParsing="false" onAction="#dltBtnPress" text="Delete" />
                   <Button fx:id="editBtn" layoutX="133.0" layoutY="163.0" mnemonicParsing="false" onAction="#editBtnPress" text="Edit" />

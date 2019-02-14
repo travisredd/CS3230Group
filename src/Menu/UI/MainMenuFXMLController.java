@@ -1,24 +1,24 @@
 package Menu.UI;
 
 import Categories.UI.CategoriesFXMLController;
-<<<<<<< HEAD:src/Menu/UI/MainMenuFXMLController.java
 import java.io.IOException;
-=======
-import Customers.UI.CustomersFXMLController;
-import Products.UI.ProductsFXMLController;
->>>>>>> Don't have to minimize main window:src/MainMenu/UI/MainMenuFXMLController.java
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -26,11 +26,16 @@ import javafx.stage.WindowEvent;
  * @author eric
  */
 public class MainMenuFXMLController implements Initializable {
-    
-    private Stage main;
-    final private ProductsFXMLController prod = new ProductsFXMLController();
-    final private CategoriesFXMLController cat = new CategoriesFXMLController();
-    final private CustomersFXMLController cust = new CustomersFXMLController();
+    /*
+    private ProductsFXMLController productWindow;
+    private CategoriesFXMLController categoryWindow;
+    private CustomersFXMLController customerWindow;
+    private Stage proStage;
+    private Stage catStage;
+    private Stage custStage;
+    private Scene proScene;
+    private Scene catScene;
+    private Scene custScene;*/
     
     @FXML
     private Button mProductsBtn;
@@ -38,7 +43,7 @@ public class MainMenuFXMLController implements Initializable {
     private Button mCategoriesBtn;
     @FXML
     private Button mCustomersBtn;
-    
+
     /**
      * Initializes the controller class.
      * @param url
@@ -83,13 +88,11 @@ public class MainMenuFXMLController implements Initializable {
     private void mProductsClicked(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Products/UI/ProductsFXML.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            root.getStylesheets().add(getClass().getResource("darkTheme.css").toExternalForm());
+            Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));  
+            stage.setScene(new Scene(root1));  
             stage.setTitle("Products");
             stage.show();
-
         }catch(Exception e){
             System.out.println("Can't load new window");
         }
@@ -100,10 +103,9 @@ public class MainMenuFXMLController implements Initializable {
     private void mCategoriesClicked(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Categories/UI/CategoriesFXML.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            root.getStylesheets().add(getClass().getResource("darkTheme.css").toExternalForm());
+            Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));  
+            stage.setScene(new Scene(root1));  
             stage.setTitle("Categories");
             stage.show(); 
         }catch(Exception e){
@@ -116,10 +118,9 @@ public class MainMenuFXMLController implements Initializable {
     private void mCustomersClicked(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Customers/UI/CustomersFXML.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            root.getStylesheets().add(getClass().getResource("darkTheme.css").toExternalForm());
+            Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));  
+            stage.setScene(new Scene(root1));  
             stage.setTitle("Customers");
             stage.show();
         }catch(Exception e){
