@@ -16,9 +16,16 @@ import javafx.stage.Stage;
  * @author reddt
  */
 public class MainMenu extends Application {
+<<<<<<< HEAD:src/Menu/UI/MainMenu.java
 
+=======
+    
+    private MainMenuFXMLController main;
+    
+>>>>>>> Don't have to minimize main window:src/MainMenu/UI/MainMenu.java
     @Override
     public void start(Stage stage) throws Exception {
+        main = new MainMenuFXMLController();
         Parent root = FXMLLoader.load(getClass().getResource("MainMenuFXML.fxml"));
         root.getStylesheets().add(getClass().getResource("darkTheme.css").toExternalForm());
         Scene scene = new Scene(root);
