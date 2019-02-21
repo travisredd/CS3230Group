@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Categories.Database;
+import Categories.Database.clsCategoriesSQL;
 import Categories.Business.clsProductInfo;
 import Categories.Business.clsCategories;
 import DB.clsDataAccess;
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class clsCategoriesDAO 
 {
-    
+
     /**
      * Create an obserableList to be able to load into the tableView, gets all categories from database with help of the dataAccessClass then creates a list of objects.
      * @return
@@ -32,7 +33,7 @@ public class clsCategoriesDAO
         {
             List<clsCategories> List = new ArrayList<>();
             ObservableList<clsCategories> lstCategories = FXCollections.observableList(List);
-            ResultSet resultSet = clsDataAccess.ExecuteSQL_Query("Select * From Category");
+            ResultSet resultSet = clsDataAccess.ExecuteSQL_Query(clsCategoriesSQL.sGetAllCategoriesSQL);
             while(resultSet.next())
             {
                 String sCategory = resultSet.getString("CATEGORY");
@@ -64,7 +65,7 @@ public class clsCategoriesDAO
         {
             List<clsProductInfo> ProductList = new ArrayList<>();
             ObservableList<clsProductInfo> lstProductInfo = FXCollections.observableList(ProductList);
-            ResultSet resultSet = clsDataAccess.ExecuteSQL_Query("Select * From Product Where CATEGORY = '" + sCategory +  "'");
+            ResultSet resultSet = clsDataAccess.ExecuteSQL_Query(clsCategoriesSQL.sGetAllProdForCatIdSQL + sCategory +  "'");
             while(resultSet.next())
             {
                 String iProductID = resultSet.getString("PRODUCTID");
@@ -95,7 +96,7 @@ public class clsCategoriesDAO
     {
         try
         {
-            clsDataAccess.ExecuteNonQuerySQL("Delete From Category Where CATEGORY = '" + sCategory +  "'");
+            clsDataAccess.ExecuteNonQuerySQL(clsCategoriesSQL.sDeleteDescriptionSQL + sCategory +  "'");
         }
         catch (Exception ex)
         {
@@ -115,7 +116,7 @@ public class clsCategoriesDAO
         //JOptionPane.showMessageDialog(null, clsNewCategory.getsCategory());
         try
         {
-            clsDataAccess.ExecuteNonQuerySQL("INSERT INTO CATEGORY (CATEGORY, DESCRIPTION) VALUES ('"
+            clsDataAccess.ExecuteNonQuerySQL(clsCategoriesSQL.sInsertCategorySQL
                     + clsNewCategory.getsCategory() + "','" 
                     + clsNewCategory.getsDescription() + "')");
         }
@@ -134,7 +135,7 @@ public class clsCategoriesDAO
     {
         try
         {
-            clsDataAccess.ExecuteNonQuerySQL("UPDATE CATEGORY SET DESCRIPTION = '" + clsSelectedCategory.getsDescription() 
+            clsDataAccess.ExecuteNonQuerySQL(clsCategoriesSQL.sUpdateDescriptionSQL + clsSelectedCategory.getsDescription() 
                     + "'WHERE CATEGORY = '" + clsSelectedCategory.getsCategory() + "'");
 
         }

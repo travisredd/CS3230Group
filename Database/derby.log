@@ -1,14 +1,20 @@
-Wed Feb 13 21:43:05 MST 2019 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Wed Feb 20 21:37:24 MST 2019 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Wed Feb 13 21:43:32 MST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0168-ea50-a8b0-ffff9a739fe1 
-on database directory C:\Users\erict\OneDrive\Documents\MEGAsync\Group project 3230\CS3230Group\Database\ManagementSystem with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
-Loaded from file:/C:/Users/erict/OneDrive/Documents/MEGAsync/Group%20project%203230/CS3230Group/ApacheDerby/db-derby-10.14.2.0-bin/lib/derby.jar
+Wed Feb 20 21:37:35 MST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0169-0e58-07ef-ffffa0834cf1 
+on database directory C:\Users\reddt\Documents\NetBeansProjects\CS3230Group\CS3230Group\Database\ManagementSystem with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Users/reddt/Documents/NetBeansProjects/CS3230Group/CS3230Group/ApacheDerby/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_201-b09
-user.dir=C:\Users\erict\OneDrive\Documents\MEGAsync\Group project 3230\CS3230Group\ApacheDerby\db-derby-10.14.2.0-bin
+java.runtime.version=1.8.0_151-b12
+user.dir=C:\Users\reddt\Documents\NetBeansProjects\CS3230Group\CS3230Group\ApacheDerby\db-derby-10.14.2.0-bin
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
-derby.system.home=C:\Users\erict\OneDrive\Documents\MEGAsync\Group project 3230\CS3230Group\Database
+derby.system.home=C:\Users\reddt\Documents\NetBeansProjects\CS3230Group\CS3230Group\Database
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Feb 21 00:17:22 MST 2019: Shutting down Derby engine
+----------------------------------------------------------------
+Thu Feb 21 00:17:22 MST 2019:
+Shutting down instance a816c00e-0169-0e58-07ef-ffffa0834cf1 on database directory C:\Users\reddt\Documents\NetBeansProjects\CS3230Group\CS3230Group\Database\ManagementSystem with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+----------------------------------------------------------------

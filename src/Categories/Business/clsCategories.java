@@ -46,15 +46,7 @@ public class clsCategories {
     
 
     
-    /**
-     * Returns gets sCategory and sDescriptions string data
-     * @return 
-     */
-    public String toString() 
-    {
-        return "Category =" + sCategory.get() + ", Description =" +
-                sDescription.get();
-    }
+
     
     /**
      * gets the category and returns sCategory
