@@ -44,18 +44,6 @@ public class clsCategories {
         sDescription = new SimpleStringProperty(Description);
     }
     
-
-    
-    /**
-     * Returns gets sCategory and sDescriptions string data
-     * @return 
-     */
-    public String toString() 
-    {
-        return "Category =" + sCategory.get() + ", Description =" +
-                sDescription.get();
-    }
-    
     /**
      * gets the category and returns sCategory
      * @return 

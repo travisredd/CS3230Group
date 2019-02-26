@@ -215,6 +215,8 @@ public class CategoriesFXMLController implements Initializable
                 
                 addCatBox.setText("");
                 addDescBox.setText("");
+                descBox.editableProperty().set(false);
+                
             }
         }
         catch(Exception ex)
@@ -327,25 +329,20 @@ public class CategoriesFXMLController implements Initializable
     @FXML
     private void tableClick(MouseEvent event) throws Exception 
     {
-        catBox.setText(table.getSelectionModel().getSelectedItem().getsCategory());
-        descBox.setText(table.getSelectionModel().getSelectedItem().getsDescription());
-        
-        lstProductInfo = clsCategoriesDAO.getAllProductsInList(table.getSelectionModel().getSelectedItem().getsCategory());
-        
-        colProductIDSumTable.setCellValueFactory(new PropertyValueFactory<>("iProductID"));
-        colProductSumTable.setCellValueFactory(new PropertyValueFactory<>("sProducts"));
-        colDescriptionSumTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
-            
-        sumTable.setItems(lstProductInfo);
+        Update();
     }
 
-    
     /**
      * Key press event on the table. 
      * @param event 
      */
     @FXML
     private void tableKeyPress(KeyEvent event) throws Exception 
+    {
+        Update();
+    }
+    
+    private void Update() throws Exception
     {
         catBox.setText(table.getSelectionModel().getSelectedItem().getsCategory());
         descBox.setText(table.getSelectionModel().getSelectedItem().getsDescription());

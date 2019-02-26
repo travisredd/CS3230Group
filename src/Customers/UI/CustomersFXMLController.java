@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
- * @author erict
+ * @author taylor
  */
 public class CustomersFXMLController implements Initializable {
 

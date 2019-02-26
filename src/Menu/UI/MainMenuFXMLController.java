@@ -26,16 +26,6 @@ import javafx.stage.Stage;
  * @author eric
  */
 public class MainMenuFXMLController implements Initializable {
-    /*
-    private ProductsFXMLController productWindow;
-    private CategoriesFXMLController categoryWindow;
-    private CustomersFXMLController customerWindow;
-    private Stage proStage;
-    private Stage catStage;
-    private Stage custStage;
-    private Scene proScene;
-    private Scene catScene;
-    private Scene custScene;*/
     
     @FXML
     private Button mProductsBtn;
@@ -52,35 +42,6 @@ public class MainMenuFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-/*
-        FXMLLoader proLoader = new FXMLLoader(getClass().getResource("ProductsFXML.fxml"));
-        FXMLLoader catLoader = new FXMLLoader(getClass().getResource("CategoriesFXML.fxml"));
-        FXMLLoader custLoader = new FXMLLoader(getClass().getResource("CustomersFXML.fxml"));
-        
-        BorderPane BorderPaneForProWindow = null;
-        BorderPane BorderPaneForCatWindow = null;
-        BorderPane BorderPaneForCustWindow = null;
-        
-        try{
-            BorderPaneForProWindow = proLoader.load();
-            BorderPaneForCatWindow = catLoader.load();
-            BorderPaneForCustWindow = custLoader.load();
-        }
-        catch(IOException ex){
-            Logger.getLogger(MainMenuFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        proStage = new Stage();
-        catStage = new Stage();
-        custStage = new Stage();
-        
-        proStage.initModality(Modality.APPLICATION_MODAL);
-        catStage.initModality(Modality.APPLICATION_MODAL);
-        custStage.initModality(Modality.APPLICATION_MODAL);
-        
-        proScene = new Scene(BorderPaneForProWindow);
-        catScene = new Scene(BorderPaneForCatWindow);
-        custScene = new Scene(BorderPaneForCustWindow);*/
     }    
 
     
