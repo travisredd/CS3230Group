@@ -172,24 +172,12 @@ public class CategoriesFXMLController implements Initializable
         {
             catBox.editableProperty().set(false);
             descBox.editableProperty().set(false);
-            
-            
             newCategory = new clsCategories();
             lstCategories = clsCategoriesDAO.getAllCategoriesInList();
-            
             newProductInfo = new clsProductInfo();
-            //lstProductInfo = clsCategoriesDAO.getAllProductsInList();
-            
             colCategoryTable.setCellValueFactory(new PropertyValueFactory<>("sCategory"));
-            colDescriptionTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
-            
+            colDescriptionTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));    
             table.setItems(lstCategories);
-            
-            //colProductIDSumTable.setCellValueFactory(new PropertyValueFactory<>("iProductID"));
-            //colProductSumTable.setCellValueFactory(new PropertyValueFactory<>("sProducts"));
-            //colDescriptionSumTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
-            
-            //sumTable.setItems(lstProductInfo);
         }
         catch(Exception ex)
         {
@@ -211,12 +199,10 @@ public class CategoriesFXMLController implements Initializable
                 clsCategories clsNewCategory = new clsCategories(addCatBox.getText(), addDescBox.getText());
                 clsCategoriesDAO.InsertCategory(clsNewCategory);
                 lstCategories = clsCategoriesDAO.getAllCategoriesInList();
-                table.setItems(lstCategories);
-                
                 addCatBox.setText("");
                 addDescBox.setText("");
                 descBox.editableProperty().set(false);
-                
+                table.setItems(lstCategories);
             }
         }
         catch(Exception ex)
@@ -232,15 +218,11 @@ public class CategoriesFXMLController implements Initializable
     @FXML
     private void dltBtnPress(ActionEvent event) 
     {
-        //Testing
-        //JOptionPane.showConfirmDialog(null, table.getSelectionModel().getSelectedItem().getsCategory());
         try
         {
-            
             lstProductInfo = clsCategoriesDAO.getAllProductsInList(table.getSelectionModel().getSelectedItem().getsCategory());
             if(table.getSelectionModel().getSelectedItem().getsCategory() != null && lstProductInfo.isEmpty())
             {
-                //tied to clsCategoriesDAO to delete the selected category
                 clsCategoriesDAO.DeleteCategory(table.getSelectionModel().getSelectedItem().getsCategory());
                 lstCategories = clsCategoriesDAO.getAllCategoriesInList();
                 table.setItems(lstCategories);
@@ -251,7 +233,6 @@ public class CategoriesFXMLController implements Initializable
             else {
                 throw new Exception("Cannot delete Category with products");
             }
-
         }
         catch(Exception ex)
         {
@@ -269,15 +250,11 @@ public class CategoriesFXMLController implements Initializable
         try
         {
             descBox.editableProperty().set(true);
-            //catBox.editableProperty().set(true);
-            //catBox.requestFocus();
-            
         }
         catch(Exception ex) 
         {
             HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
         }
-
     }
 
     /**
@@ -287,11 +264,9 @@ public class CategoriesFXMLController implements Initializable
     @FXML
     private void updBtnPress(ActionEvent event) 
     {
-        
         try
         {
             clsCategories clsSelectedCategory = table.getSelectionModel().getSelectedItem();
-            
             if(clsSelectedCategory != null && catBox.getText().equals("") == false && descBox.getText().equals("") == false) 
             {
                 //clsSelectedCategory.setsCategory(catBox.getText());
@@ -300,13 +275,11 @@ public class CategoriesFXMLController implements Initializable
                 lstCategories = clsCategoriesDAO.getAllCategoriesInList();
                 table.setItems(lstCategories);
             }
-
         }
         catch(Exception ex) 
         {
             HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
         }
-
     }
     
     /**
@@ -346,14 +319,10 @@ public class CategoriesFXMLController implements Initializable
     {
         catBox.setText(table.getSelectionModel().getSelectedItem().getsCategory());
         descBox.setText(table.getSelectionModel().getSelectedItem().getsDescription());
-        
         lstProductInfo = clsCategoriesDAO.getAllProductsInList(table.getSelectionModel().getSelectedItem().getsCategory());
-        
         colProductIDSumTable.setCellValueFactory(new PropertyValueFactory<>("iProductID"));
         colProductSumTable.setCellValueFactory(new PropertyValueFactory<>("sProducts"));
         colDescriptionSumTable.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
-            
         sumTable.setItems(lstProductInfo);
     }
-
 }

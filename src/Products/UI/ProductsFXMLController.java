@@ -129,8 +129,6 @@ public class ProductsFXMLController implements Initializable {
             
             table.setItems(lstProduct);
             
-            colOrdId.setCellValueFactory(new PropertyValueFactory<>(lstProduct.toString()));
-            /*
             colOrdId.setCellValueFactory(new PropertyValueFactory<>("iProductId"));
             colCust.setCellValueFactory(new PropertyValueFactory<>("sCustomer"));
             colDate.setCellValueFactory(new PropertyValueFactory<>("sDate"));
@@ -138,7 +136,7 @@ public class ProductsFXMLController implements Initializable {
             colProd.setCellValueFactory(new PropertyValueFactory<>("sProduct"));
             colDesc.setCellValueFactory(new PropertyValueFactory<>("sDescription"));
             colCat.setCellValueFactory(new PropertyValueFactory<>("sCategory"));
-            colCost.setCellValueFactory(new PropertyValueFactory<>("dCost"));*/
+            colCost.setCellValueFactory(new PropertyValueFactory<>("dCost"));
 
             
         }

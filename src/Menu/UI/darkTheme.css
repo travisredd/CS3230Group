@@ -29,8 +29,19 @@ and open the template in the editor.
     -fx-background-color: rgb(50,50,50);
 }
 
+.table-row-cell:selected{
+    -fx-background-color: blue;
+}
+
+.table-row-cell{
+    -fx-background-color: rgb(50,50,50);
+    
+}
 
 .table-column{
-    -fx-background-color: rgb(50,50,50);
+    /*-fx-background-color: rgb(50,50,50);*/
     -fx-text-fill: white;
 } 
+
+
+    
