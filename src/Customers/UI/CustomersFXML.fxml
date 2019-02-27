@@ -22,6 +22,9 @@
                   <Label layoutX="25.0" layoutY="23.0" text="Customer ID:" />
                   <Label layoutX="47.0" layoutY="135.0" text="Company:" />
                   <TextField fx:id="addCompBox" layoutX="123.0" layoutY="131.0" prefWidth="150.0" />
+                  <Label fx:id="lblNewIDError" layoutX="86.0" layoutY="51.0" text="Please enter an ID for the customer." textFill="RED" />
+                  <Label fx:id="lblNewNameError" layoutX="75.0" layoutY="107.0" text="Please enter a name for the customer." textFill="RED" />
+                  <Label fx:id="lblNewCompanyError" layoutX="56.0" layoutY="163.0" text="Please enter a company for the customer." textFill="RED" />
                </children>
             </AnchorPane>
          </content>
@@ -60,6 +63,8 @@
                   <Button fx:id="dltBtn" layoutX="34.0" layoutY="210.0" mnemonicParsing="false" onAction="#dltBtnPress" text="Delete" />
                   <Button fx:id="editBtn" layoutX="142.0" layoutY="210.0" mnemonicParsing="false" onAction="#editBtnPress" text="Edit" />
                   <Button fx:id="updBtn" layoutX="213.0" layoutY="210.0" mnemonicParsing="false" onAction="#updBtnPress" text="Update" />
+                  <Label fx:id="lblNameError" layoutX="71.0" layoutY="107.0" text="Please enter a name for the customer." textFill="RED" />
+                  <Label fx:id="lblCompanyError" layoutX="52.0" layoutY="163.0" text="Please enter a company for the customer." textFill="RED" />
                </children>
             </AnchorPane>
          </content>
