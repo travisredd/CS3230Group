@@ -1,47 +1,44 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : Jan 31, 2019, 10:39:24 PM
     Author     : eric
 */
 
+/** Dark theme is the superior theme*/
 .root{
     -fx-background-color: rgb(66,66,66);
 }
-
+/** Dark theme is the superior theme*/
 .button{
     -fx-background-color: grey;
     -fx-text-fill: white;
 }
-
+/** Dark theme is the superior theme*/
 .label{
     -fx-text-fill: white;
 }
-
+/** Dark theme is the superior theme*/
 .titled-pane{
     -fx-collapsible: false;    
 }
-
+/** Dark theme is the superior theme*/
 #back{
     -fx-background-color: rgb(50,50,50);
 }
-
+/** Dark theme is the superior theme*/
 .table-row-cell:selected{
     -fx-background-color: blue;
 }
-
+/** Dark theme is the superior theme*/
 .table-row-cell{
     -fx-background-color: rgb(50,50,50);
     
 }
-
+/** Dark theme is the superior theme*/
 .table-column{
     /*-fx-background-color: rgb(50,50,50);*/
     -fx-text-fill: white;
 } 
-
-
-    
+/** Dark theme is the superior theme*/
+.table-view .column-header .label {
+    -fx-text-fill: black;
+}

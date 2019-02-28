@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Products.Business;
 
 import java.util.Date;
@@ -19,24 +14,49 @@ import javafx.beans.property.StringProperty;
  *
  * @author eric
  */
-public class clsProduct {
+public class clsProduct
+{
 
+    /**
+     * IntegerProperty for Product Id
+     */
     private IntegerProperty iProductId;
-    
+
+    /**
+     * String Property for Product
+     */
     private StringProperty sProduct;
-    
+
+    /**
+     * String Property for Description
+     */
     private StringProperty sDescription;
-    
+
+    /**
+     * String Property for Category
+     */
     private StringProperty sCategory;
-    
+
+    /**
+     * DoubleProperty for Cost
+     */
     private DoubleProperty dCost;
-    
+
+    /**
+     * IntegerProperty for Order Id
+     */
     private IntegerProperty iOrderId;
-    
+
+    /**
+     * String Property for Customer
+     */
     private StringProperty sCustomer;
-    
+
+    /**
+     * String Property for Date
+     */
     private StringProperty sDate;
-    
+
     /**
      * Constructor
      */
@@ -48,28 +68,30 @@ public class clsProduct {
         sCategory = new SimpleStringProperty("");
         dCost = new SimpleDoubleProperty(0);
     }
-    
+
     /**
      * Constructor for top table
      * @param prodId
      * @param prod
      * @param desc
      * @param cat
-     * @param cost 
+     * @param cost
      */
-    public clsProduct(int prodId, String prod, String desc, String cat, double cost) {
+    public clsProduct(int prodId, String prod, String desc, String cat, double cost)
+    {
         iProductId = new SimpleIntegerProperty(prodId);
         sProduct = new SimpleStringProperty(prod);
         sDescription = new SimpleStringProperty(desc);
         sCategory = new SimpleStringProperty(cat);
         dCost = new SimpleDoubleProperty(cost);
     }
-    
+
     /**
      * Constructor for bottom table
+     *
      * @param ordId
      * @param name
-     * @param date 
+     * @param date
      */
     public clsProduct(int ordId, String name, Date date)
     {
@@ -78,107 +100,191 @@ public class clsProduct {
         sCustomer = new SimpleStringProperty(name);
         sDate = new SimpleStringProperty(dateFormat.format(date));
     }
-    
+
+    /**
+     * getter for iProductId
+     * @return 
+     */
     public int GetiProductId()
     {
         return iProductId.get();
     }
-    
-    public String GetsProduct()
-    {
-        return sProduct.get();
-    }
-    
-    public String GetsDescription()
-    {
-        return sDescription.get();
-    }
-    
-    public String GetsCategory()
-    {
-        return sCategory.get();
-    }
-    
-    public double GetdCost()
-    {
-        return dCost.get();
-    }
-    
-    public int GetiOrderId()
-    {
-        return iOrderId.get();
-    }
-    
-    public String GetsCustomer()
-    {
-        return sCustomer.get();
-    }
-    
-    public String GetsDate()
-    {
-        return sDate.get();
-    }
-    
+
+    /**
+     * setter for iProductId
+     * @param prodId 
+     */
     public void SetiProductId(int prodId)
     {
         iProductId.set(prodId);
     }
-    
-    public void SetsProduct(String prod)
-    {
-        sProduct.set(prod);
-    }
-    
-    public void SetsDescription(String desc)
-    {
-        sDescription.set(desc);
-    }
-    
-    public void SetsCategory(String cat)
-    {
-        sCategory.set(cat);
-    }
-    
-    public void SetdCost(double cost)
-    {
-        dCost.set(cost);
-    }
-    
+
+    /**
+     * getter for iProductId
+     * @return 
+     */
     public IntegerProperty GetProductIdProperty()
     {
         return iProductId;
     }
-    
+
+    /**
+     * getter for sProduct
+     * @return 
+     */
+    public String GetsProduct()
+    {
+        return sProduct.get();
+    }
+
+    /**
+     * getter for sDescription
+     * @return 
+     */
+    public String GetsDescription()
+    {
+        return sDescription.get();
+    }
+
+    /**
+     * getter fir sCategory
+     * @return 
+     */
+    public String GetsCategory()
+    {
+        return sCategory.get();
+    }
+
+    /**
+     * getter for dCost
+     * @return 
+     */
+    public double GetdCost()
+    {
+        return dCost.get();
+    }
+
+    /**
+     * getter for iOrderId
+     * @return 
+     */
+    public int GetiOrderId()
+    {
+        return iOrderId.get();
+    }
+
+    /**
+     * getter for sCutomer
+     * @return 
+     */
+    public String GetsCustomer()
+    {
+        return sCustomer.get();
+    }
+
+    /**
+     * getter for sDate
+     * @return 
+     */
+    public String GetsDate()
+    {
+        return sDate.get();
+    }
+
+    /**
+     * setter for prod
+     * @param prod 
+     */
+    public void SetsProduct(String prod)
+    {
+        sProduct.set(prod);
+    }
+
+    /**
+     * setter for sDescription
+     * @param desc 
+     */
+    public void SetsDescription(String desc)
+    {
+        sDescription.set(desc);
+    }
+
+    /**
+     * setter for sCategory
+     * @param cat 
+     */
+    public void SetsCategory(String cat)
+    {
+        sCategory.set(cat);
+    }
+
+    /**
+     * setter for dCost
+     * @param cost 
+     */
+    public void SetdCost(double cost)
+    {
+        dCost.set(cost);
+    }
+
+    /**
+     * getter for sProduct
+     * @return 
+     */
     public StringProperty GetProductProperty()
     {
         return sProduct;
     }
-    
+
+    /**
+     * getter for sDescription
+     * @return 
+     */
     public StringProperty GetDescriptionProperty()
     {
         return sDescription;
     }
-    
+
+    /**
+     * getter for sCategory
+     * @return 
+     */
     public StringProperty GetCategoryProperty()
     {
         return sCategory;
     }
-    
+
+    /**
+     * getter for dCost
+     * @return 
+     */
     public DoubleProperty GetCostProperty()
     {
         return dCost;
     }
-    
+
+    /**
+     * getter for iOrderId
+     * @return 
+     */
     public IntegerProperty GetOrderIdProperty()
     {
         return iOrderId;
     }
-    
+
+    /**
+     * getter for sCustomer
+     * @return 
+     */
     public StringProperty GetCustomerProperty()
     {
         return sCustomer;
     }
-    
+
+    /**
+     * getter for sDate
+     * @return 
+     */
     public StringProperty GetDateProperty()
     {
         return sDate;

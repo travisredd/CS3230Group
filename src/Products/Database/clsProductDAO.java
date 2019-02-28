@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Products.Database;
 
 import DB.clsDataAccess;
@@ -15,11 +10,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- *
+ * Logic for db stuff
  * @author eric
  */
 public class clsProductDAO {
     
+    /**
+     * gets all products and returns them as an ObservableList<clsProduct>
+     * @return
+     * @throws Exception 
+     */
     public static ObservableList<clsProduct> getAllProducts() throws Exception
     {
         try{
@@ -51,6 +51,11 @@ public class clsProductDAO {
         }
     }
     
+    /**
+     * gets all categories and returns them as an ObservableList<String>
+     * @return
+     * @throws Exception 
+     */
     public static ObservableList<String> getAllCategories() throws Exception
     {
         try{
@@ -77,6 +82,12 @@ public class clsProductDAO {
         }
     }
     
+    /**
+     * gets all orders and returns them as an ObservableList<clsProduct>
+     * @param prodId
+     * @return
+     * @throws Exception 
+     */
     public static ObservableList<clsProduct> getOrder(int prodId) throws Exception
     {
         try{
@@ -106,6 +117,11 @@ public class clsProductDAO {
         }
     }
     
+    /**
+     * Removes a product with a passed in productId
+     * @param productId
+     * @throws Exception 
+     */
     public static void DeleteProduct(int productId) throws Exception
     {
         try{
@@ -119,6 +135,15 @@ public class clsProductDAO {
         }
     }
     
+    /**
+     * Inserts a product with the passed in values
+     * @param prodId
+     * @param prod
+     * @param desc
+     * @param cat
+     * @param cost
+     * @throws Exception 
+     */
     public static void InsertProduct(int prodId, String prod, String desc, String cat, double cost) throws Exception
     {
         try{
@@ -132,6 +157,15 @@ public class clsProductDAO {
         }
     }
     
+    /**
+     * Updates a product based on the passed in values
+     * @param newName
+     * @param newDesc
+     * @param newCat
+     * @param newCost
+     * @param newId
+     * @throws Exception 
+     */
     public static void UpdateProduct(String newName, String newDesc, String newCat, double newCost, int newId) throws Exception
     {
         try{
