@@ -5,15 +5,25 @@
  */
 package Customers.UI;
 
+import Customers.Database.clsCustomersDB;
+import Customers.Business.clsCustomers;
+import Customers.Business.clsOrders;
+import java.awt.Color;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
 
@@ -66,7 +76,7 @@ public class CustomersFXMLController implements Initializable {
      * Table that displays all orders from the current customer.
      */
     @FXML
-    private TableView<?> sumTable;
+    private TableView<clsOrders> sumTable;
     
     
     /**
@@ -115,7 +125,7 @@ public class CustomersFXMLController implements Initializable {
      * Table that displays all customers in the system.
      */
     @FXML
-    private TableView<?> table;
+    private TableView<clsCustomers> table;
     
     
     /**
@@ -156,6 +166,67 @@ public class CustomersFXMLController implements Initializable {
      */
     @FXML
     private Label lblCompanyError;
+    
+    
+    /**
+     * Error label that displays when user tries to enter a customer ID that 
+     * already exists in the database.
+     */
+    @FXML
+    private Label lblExistingCustomerError;
+    
+    
+    /**
+     * Error label that displays when user tries to delete a customer that
+     * has orders in the system
+     */
+    @FXML
+    private Label lblDeleteError;
+    
+    
+    /**
+     * table column set to clsCustID and string
+     */
+    @FXML
+    private TableColumn<clsCustomers, String> colCustID;
+    
+    
+    /**
+     * table column set to colCustName and string
+     */
+    @FXML
+    private TableColumn<clsCustomers, String> colCustName;
+    
+    
+    /**
+     * table column set to colCustCompany and string
+     */
+    @FXML
+    private TableColumn<clsCustomers, String> colCustCompany;
+    
+    
+    /**
+     * table column set to colOrderID and string
+     */
+    @FXML
+    private TableColumn<clsOrders, String> colOrderID;
+    
+    
+    /**
+     * table column set to colOrderDate and string
+     */
+    @FXML
+    private TableColumn<clsOrders, String> colOrderDate;
+    
+    /**
+     * ObservableList that holds the orders to be displayed
+     */
+    private ObservableList<clsOrders> ordersToDisplay;
+    
+    /**
+     * ObservableList that holds the customers to be displayed
+     */
+    private ObservableList<clsCustomers> customerList;
 
     
     // </editor-fold>
@@ -163,7 +234,11 @@ public class CustomersFXMLController implements Initializable {
     
     
     // <editor-fold defaultstate="collapsed" desc="Global Variables">
-    
+    /**
+     * Declaration of clsCustomersDB object which holds the business logic
+     * for SQL statements
+     */
+    clsCustomersDB databaseDriver;
     
     // </editor-fold>
     
@@ -187,8 +262,21 @@ public class CustomersFXMLController implements Initializable {
                 
                 dataValidated = false;
             }
-            else
-                lblNewIDError.setVisible(false);
+            else{
+                if(existingCustomerCheck(addCustBox.getText())){
+                    dataValidated = false;
+                    lblExistingCustomerError.setVisible(true);
+                }
+                else{
+                    lblNewIDError.setVisible(false);
+                    lblExistingCustomerError.setVisible(false);
+                }
+            }
+            
+            //Check to see if the entered ID number already exists in the database
+            if(!addCustBox.getText().isEmpty()){
+                
+            }
             
             
             if(!validateStringEntry(addNameBox.getText())){
@@ -213,7 +301,12 @@ public class CustomersFXMLController implements Initializable {
             
             //If all data passes, save entry to the database
             if(dataValidated){
+                databaseDriver.InsertCustomer(new clsCustomers(addCustBox.getText(),
+                                                addNameBox.getText(), addCompBox.getText()));
+                
                 clearNewCustomerBox();
+                
+                updateCustomers();
             }
         }
         catch(Exception ex) 
@@ -232,10 +325,27 @@ public class CustomersFXMLController implements Initializable {
     private void dltBtnPress(ActionEvent event) {
         try{
             //Check to see if customer has any orders in the system
+            if(table.getSelectionModel().getSelectedItem() != null){
+                clsCustomers selectedCustomer = table.getSelectionModel().getSelectedItem();
+                
                 //If the customer does have orders, do not allow them to be deleted
-
+                if(databaseDriver.checkForOrders(selectedCustomer)){
+                    lblDeleteError.setVisible(true);
+                }
                 //If the customer does not have orders, remove them from the 
-                //database. 
+                //database.
+                else{
+                    databaseDriver.DeleteCustomer(selectedCustomer);
+                    updateCustomers();
+                    custBox.setText("");
+                    dltBtn.setDisable(true);
+                    editBtn.setDisable(true);
+                }
+                    
+            }
+                
+
+                 
         }
         catch(Exception ex) 
         {
@@ -255,6 +365,9 @@ public class CustomersFXMLController implements Initializable {
             //from read only to allow text entry.
             nameBox.setDisable(false);
             compBox.setDisable(false);
+            
+            //Enable Update button
+            updBtn.setDisable(false);
         }
         catch(Exception ex) 
         {
@@ -297,8 +410,63 @@ public class CustomersFXMLController implements Initializable {
             
             //If both fields have data, clear errors and save to database
             if(validData){
+                databaseDriver.UpdateCustomer(custBox.getText(), nameBox.getText(), 
+                                            compBox.getText());
+                
+                updateCustomers();
+                
                 clearSelectedCustomerBox();
+                
+                //Disable buttons and clear the customer ID text box
+                dltBtn.setDisable(true);
+                editBtn.setDisable(true);
+                updBtn.setDisable(true);
+                
+                nameBox.setDisable(true);
+                compBox.setDisable(true);
+                custBox.setText("");
             }
+        }
+        catch(Exception ex) 
+        {
+            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
+        }
+    }
+    
+    /**
+     * Method that runs when a customer is clicked on in the TableView. Clicking
+     * on a customer displays all current orders for them on the order TableView.
+     * @param event
+     * @throws Exception 
+     */
+    @FXML
+    private void customerTableClicked(MouseEvent event) throws Exception{
+        try{
+            if(table.getSelectionModel().getSelectedItem() != null){
+                //Get the currently selected customer
+                clsCustomers selectedCustomer = table.getSelectionModel().getSelectedItem();
+                
+                //Display the customer's ID in the Selected customer box
+                custBox.setText(selectedCustomer.getCustID());
+                
+                //Clear the 'cannot delete' error message
+                lblDeleteError.setVisible(false);
+
+                //Get list of orders from the currently selected customer
+                ordersToDisplay = databaseDriver.getOrders(selectedCustomer);
+
+                //Display the orders from the currently selected customer
+                sumTable.setItems(ordersToDisplay);
+                
+                colOrderID.setCellValueFactory(cellData -> cellData.getValue().getOrderID());
+                colOrderDate.setCellValueFactory(cellData -> cellData.getValue().getOrderDate());
+                
+                //Enable the Delete and Edit buttons
+                dltBtn.setDisable(false);
+                editBtn.setDisable(false);
+            }
+            
+            
         }
         catch(Exception ex) 
         {
@@ -333,22 +501,76 @@ public class CustomersFXMLController implements Initializable {
      */
     private void initializationMethod(){
         try{
+            
             //Hide error labels
             lblNewIDError.setVisible(false);
             lblNewNameError.setVisible(false);
             lblNewCompanyError.setVisible(false);
             lblNameError.setVisible(false);
             lblCompanyError.setVisible(false);
+            lblExistingCustomerError.setVisible(false);
+            lblDeleteError.setVisible(false);
             
             //Disable existing customer text fields
             custBox.setDisable(true);
             nameBox.setDisable(true);
             compBox.setDisable(true);
+            
+            //Initialization of clsCustomersDB object
+            databaseDriver = new clsCustomersDB();
+            
+            //Display the customers
+            updateCustomers();
         }
         catch(Exception ex) 
         {
             HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
         }
+    }
+    
+    /**
+     * Method that runs to update the current list of customers
+     */
+    private void updateCustomers(){
+        try{
+            customerList = databaseDriver.getCustomers();
+            table.setItems(customerList);
+            
+            //Set up the tableViews for display
+            colCustID.setCellValueFactory(cellData -> cellData.getValue().getCustIDStringProperty());
+            colCustName.setCellValueFactory(cellData -> cellData.getValue().getCustNameStringProperty());
+            colCustCompany.setCellValueFactory(cellData -> cellData.getValue().getCustCompanyStringProperty());
+        }
+        catch(Exception ex) 
+        {
+            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
+        }
+    }
+    
+    /**
+     * Method that accepts a String as an argument and checks it against existing
+     * customer IDs to see if it is in the system. Returns true if the customer
+     * currently exists and false if not.
+     * @param ID
+     * @return 
+     */
+    private boolean existingCustomerCheck(String ID){
+        try{
+            ObservableList<clsCustomers> custList = databaseDriver.getCustomers();
+            
+            List<clsCustomers> temp = custList.stream().collect(Collectors.toList());
+            
+            for(int count = 0; count < custList.size(); count++){
+                if(temp.get(count).getCustID().toString().equals(ID))
+                    return true;
+            }
+        }
+        catch(Exception ex) 
+        {
+            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
+        }
+        
+        return false;
     }
     
     /**
