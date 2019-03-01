@@ -5,6 +5,9 @@
  */
 package Customers.Business;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * Class that represents a Customer in the system
  * 
@@ -14,16 +17,16 @@ public class clsCustomers {
     /**
      * Class-Level Variables
      */
-    private String custID; //Int that holds the customer's id
-    private String custName; //String to hold the customer's name
-    private String custCompany; //String to hold the customer's company
+    private StringProperty custID; //Int that holds the customer's id
+    private StringProperty custName; //String to hold the customer's name
+    private StringProperty custCompany; //String to hold the customer's company
     
     
     
     /**
      * @return the custID
      */
-    public String getCustID() {
+    public StringProperty getCustID() {
         return custID;
     }
 
@@ -31,13 +34,13 @@ public class clsCustomers {
      * @param custID the custID to set
      */
     public void setCustID(String custID) {
-        this.custID = custID;
+        this.custID = new SimpleStringProperty(custID);
     }
 
     /**
      * @return the custName
      */
-    public String getCustName() {
+    public StringProperty getCustName() {
         return custName;
     }
 
@@ -45,13 +48,13 @@ public class clsCustomers {
      * @param custName the custName to set
      */
     public void setCustName(String custName) {
-        this.custName = custName;
+        this.custName = new SimpleStringProperty(custName);
     }
 
     /**
      * @return the custCompany
      */
-    public String getCustCompany() {
+    public StringProperty getCustCompany() {
         return custCompany;
     }
 
@@ -59,7 +62,7 @@ public class clsCustomers {
      * @param custCompany the custCompany to set
      */
     public void setCustCompany(String custCompany) {
-        this.custCompany = custCompany;
+        this.custCompany = new SimpleStringProperty(custCompany);
     }
     
     

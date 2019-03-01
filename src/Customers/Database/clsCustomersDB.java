@@ -42,10 +42,9 @@ public class clsCustomersDB {
             //If there are any results in the database, create a customer for
             //each entry and add it to the list
             while(customerResults.next()){
-                String ID = customerResults.getString("CUSTOMER_ID");
+                String ID = customerResults.getString("CUSTOMERID");
                 String name = customerResults.getString("NAME");
-                String company = "";
-                //String company = customerResults.getString();
+                String company = customerResults.getString("COMPANY");
                 
                 lstOfCustomers.add(new clsCustomers(ID, name, company));
             }
@@ -87,8 +86,8 @@ public class clsCustomersDB {
             //If there are any results, create an Order object for each row and
             //Add it to the ObservableList
             while(orderResults.next()){
-                String ID = orderResults.getString("ORDER_NUM");
-                String Date = orderResults.getString("SALES_DATE");
+                String ID = orderResults.getString("ORDERID");
+                String Date = orderResults.getString("DATE");
                 
                 lstOfOrders.add(new clsOrders(ID, Date));
             }
@@ -108,16 +107,18 @@ public class clsCustomersDB {
     }
     
     /**
-     * NOT FINISHED.
      * Updates a customer's name and company, but will not update Customer ID
-     * @param updatedCustomer
+     * @param custID
+     * @param newName
+     * @param newCompany
      * @throws Exception 
      */
-    public static void UpdateCustomer(clsCustomers updatedCustomer) throws Exception {
+    public static void UpdateCustomer(String custID, String newName, String newCompany) throws Exception {
         try{
             clsDataAccess.ExecuteNonQuerySQL("UPDATE CUSTOMER " + 
-                                             "SET NAME = '" + updatedCustomer.getCustName() + "', " + 
-                                             "WHERE CUSTOMER_ID = " + updatedCustomer.getCustID());
+                                             "SET NAME = '" + newName + "', " + 
+                                             "COMPANY = '" + newCompany + " " +
+                                             "WHERE CUSTOMER_ID = " + custID);
         }
         catch (Exception ex) 
         {
@@ -150,8 +151,8 @@ public class clsCustomersDB {
      */
     public static void InsertCustomer(clsCustomers customer) throws Exception{
         try{
-            clsDataAccess.ExecuteNonQuerySQL("INSERT INTO CUSTOMER (CUSTOMER_ID, NAME, COMPANY) " + 
-                                            "VALUES " + customer.getCustID() + ", '" + 
+            clsDataAccess.ExecuteNonQuerySQL("INSERT INTO CUSTOMER (CUSTOMERID, NAME, COMPANY) " + 
+                                            "VALUES (" + customer.getCustID() + ", '" + 
                                             customer.getCustName() + "', '" + 
                                             customer.getCustCompany() + "')");
         }
@@ -162,4 +163,5 @@ public class clsCustomersDB {
         }
     }
 }
+
 
