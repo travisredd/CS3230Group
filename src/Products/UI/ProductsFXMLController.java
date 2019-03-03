@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -26,6 +27,9 @@ import javax.swing.JOptionPane;
  */
 public class ProductsFXMLController implements Initializable {
 
+    private boolean parseError = false;
+    private int addTmpId = -1;
+    
     /**
      * List for first table
      */
@@ -192,6 +196,18 @@ public class ProductsFXMLController implements Initializable {
     private TableColumn<clsProduct, String> colCost;
     
     /**
+     * Error Label
+     */
+    @FXML
+    private Label errLbl;
+    
+    /**
+     * Error Label for adding
+     */
+    @FXML
+    private Label addErrLbl;
+    
+    /**
      * Initializes the controller class.
      * @param url
      * @param rb
@@ -200,9 +216,9 @@ public class ProductsFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try
         {
-            product = new clsProduct();
             lstProduct = clsProductDAO.getAllProducts();
             Disable();
+            DisableButtons();
             updateCatBox();
             
             table.setItems(lstProduct);
@@ -218,7 +234,8 @@ public class ProductsFXMLController implements Initializable {
         }
         catch(Exception ex)
         {
-            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
+            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), 
+                    Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
         }
     }    
 
@@ -239,14 +256,27 @@ public class ProductsFXMLController implements Initializable {
                 sumTable.setItems(lstOrder);
                 
                 ClearProducts();
+                ClearError();
+                Disable();
             }
             else {
-                throw new Exception("Cannot delete a product with active orders!");
+                String error = "This product is on these orders: ";
+                
+                for (int i = 0; i < lstOrder.size(); i++)
+                {
+                    error += lstOrder.get(i).GetiOrderId();
+                    if (lstOrder.size() != i + 1)
+                        error += ", ";
+                    else
+                        error += "!";
+                }
+                errLbl.setText(error);
             }
         }
         catch(Exception ex)
         {
-            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
+            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), 
+                    Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
         }
     }
 
@@ -259,10 +289,12 @@ public class ProductsFXMLController implements Initializable {
         try
         {
             Enable();
+            ClearError();
         }
         catch(Exception ex) 
         {
-            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
+            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), 
+                    Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
         }
     }
 
@@ -290,12 +322,14 @@ public class ProductsFXMLController implements Initializable {
                 lstProduct = clsProductDAO.getAllProducts();
                 table.setItems(lstProduct);
                 Disable();
+                ClearError();
             }
 
         }
         catch(Exception ex) 
         {
-            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
+            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(),
+                    Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
         }
     }
 
@@ -307,21 +341,57 @@ public class ProductsFXMLController implements Initializable {
     private void saveBtnPress(ActionEvent event) {
         try
         {
-            if(addProdIdBox.getText().equals("") == false && addProdBox.getText().equals("") == false && addDescBox.getText().equals("") == false &&
-                    addCatBox.getValue().equals("") == false && addCostBox.getText().equals("") == false) 
+            parseError = false;
+            if(addProdIdBox.getText().equals("") == false && addProdBox.getText().equals("") == false && 
+                    addDescBox.getText().equals("") == false && addCatBox.getValue().equals("") == false &&
+                    addCostBox.getText().equals("") == false) 
             {
-                clsProductDAO.InsertProduct(Integer.parseInt(addProdIdBox.getText()), addProdBox.getText(),
-                        addDescBox.getText(), addCatBox.getValue(), Double.parseDouble(addCostBox.getText()));
-                lstProduct = clsProductDAO.getAllProducts();
-                table.setItems(lstProduct);
-                
-                Disable();
-                ClearProducts();
+
+                double addTmpCost = -1;
+                try{
+                    //parseInt vs parseUnsignedInt: parseInt makes this easier for this scenario
+                    addTmpId = Integer.parseInt(addProdIdBox.getText());
+                    if(addTmpId < 0)
+                        SetError("id");
+                }catch(Exception e){
+                    SetError("id");
+                }
+                try{
+                    addTmpCost = Double.parseDouble(addCostBox.getText());
+                    if(addTmpCost < 0)
+                        SetError("cost");
+                }catch(Exception e){
+                    SetError("cost");
+                }
+                if(!parseError)
+                {
+                    clsProductDAO.InsertProduct(addTmpId, addProdBox.getText(),
+                            addDescBox.getText(), addCatBox.getValue(), addTmpCost);
+                    lstProduct = clsProductDAO.getAllProducts();
+                    table.setItems(lstProduct);
+
+                    Disable();
+                    ClearProducts();
+                    ClearAddError();
+                }    
+            }
+            else
+            {
+                addErrLbl.setText("One or more fields is empty!");
             }
         }
         catch(Exception ex)
         {
-            HandleException(Thread.currentThread().getStackTrace()[1].getClassName(), Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
+            boolean prodIdError = false;
+            for(int i = 0; i < lstProduct.size(); i++)
+            {
+                if(lstProduct.get(i).GetiProductId() == addTmpId){
+                    addErrLbl.setText("Product Id already used [" + addProdIdBox.getText() + "]!");
+                    prodIdError = true;
+                }
+                if(!prodIdError)
+                    addErrLbl.setText("Please fill in all fields");
+            }
         }
     }
     
@@ -378,6 +448,9 @@ public class ProductsFXMLController implements Initializable {
      */
     private void Update() throws Exception
     {
+        dltBtn.setDisable(false);
+        updBtn.setDisable(false);
+        editBtn.setDisable(false);
         prodIdBox.setText(Integer.toString(table.getSelectionModel().getSelectedItem().GetiProductId()));
         prodBox.setText(table.getSelectionModel().getSelectedItem().GetsProduct());
         descBox.setText(table.getSelectionModel().getSelectedItem().GetsDescription());
@@ -389,7 +462,7 @@ public class ProductsFXMLController implements Initializable {
         colOrdId.setCellValueFactory(cellData -> cellData.getValue().GetOrderIdProperty().asString());
         colCust.setCellValueFactory(cellData -> cellData.getValue().GetCustomerProperty());
         colDate.setCellValueFactory(cellData -> cellData.getValue().GetDateProperty());
-         
+        ClearError();
         sumTable.setItems(lstOrder);
     }
     
@@ -410,9 +483,9 @@ public class ProductsFXMLController implements Initializable {
      */
     private void Enable()
     {
-            prodBox.editableProperty().set(true);
-            descBox.editableProperty().set(true);
-            costBox.editableProperty().set(true);   
+            prodBox.setDisable(false);
+            descBox.setDisable(false);
+            costBox.setDisable(false);   
             catBox.disableProperty().set(false);
     }
     
@@ -421,10 +494,33 @@ public class ProductsFXMLController implements Initializable {
      */
     private void Disable()
     {
-            prodIdBox.editableProperty().set(false);
-            prodBox.editableProperty().set(false);
-            descBox.editableProperty().set(false);
-            costBox.editableProperty().set(false);
+            prodIdBox.setDisable(true);
+            prodBox.setDisable(true);
+            descBox.setDisable(true);
+            costBox.setDisable(true);
             catBox.disableProperty().set(true);
+    }
+    
+    private void DisableButtons()
+    {
+            dltBtn.setDisable(true);
+            updBtn.setDisable(true);
+            editBtn.setDisable(true);
+    }
+    
+    private void ClearError()
+    {
+        errLbl.setText("");
+    }
+    
+    private void ClearAddError()
+    {
+        addErrLbl.setText("");
+    }
+    
+    private void SetError(String type)
+    {
+        parseError = true;
+        addErrLbl.setText("Invalid " + type);
     }
 }
