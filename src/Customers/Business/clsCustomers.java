@@ -5,6 +5,9 @@
  */
 package Customers.Business;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * Class that represents a Customer in the system
  * 
@@ -21,9 +24,17 @@ public class clsCustomers {
     
     
     /**
-     * @return the custID
+     * @return the custID as a StringProperty
      */
-    public String getCustID() {
+    public StringProperty getCustIDStringProperty() {
+        return new SimpleStringProperty(custID);
+    }
+    
+    /**
+     * Returns custID as a normal String
+     * @return 
+     */
+    public String getCustID(){
         return custID;
     }
 
@@ -35,9 +46,17 @@ public class clsCustomers {
     }
 
     /**
-     * @return the custName
+     * @return the custName as a StringProperty
      */
-    public String getCustName() {
+    public StringProperty getCustNameStringProperty() {
+        return new SimpleStringProperty(custName);
+    }
+    
+    /**
+     * return custName as a simple String
+     * @return 
+     */
+    public String getCustName(){
         return custName;
     }
 
@@ -49,9 +68,17 @@ public class clsCustomers {
     }
 
     /**
-     * @return the custCompany
+     * @return the custCompany as a StringProperty
      */
-    public String getCustCompany() {
+    public StringProperty getCustCompanyStringProperty() {
+        return new SimpleStringProperty(custCompany);
+    }
+    
+    /**
+     * Return custCompany as simple String
+     * @return 
+     */
+    public String getCustCompany(){
         return custCompany;
     }
 

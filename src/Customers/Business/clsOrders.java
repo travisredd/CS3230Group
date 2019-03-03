@@ -5,6 +5,9 @@
  */
 package Customers.Business;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author w01214771
@@ -13,14 +16,14 @@ public class clsOrders {
     /**
      * Class-Level Variables
      */
-    private String ID; //Variable to hold the order's ID
-    private String date; //Variable to hold the order's date
+    private StringProperty ID; //Variable to hold the order's ID
+    private StringProperty date; //Variable to hold the order's date
     
     
     /**
      * @return the ID
      */
-    public String getID() {
+    public StringProperty getOrderID() {
         return ID;
     }
 
@@ -28,13 +31,13 @@ public class clsOrders {
      * @param ID the ID to set
      */
     public void setID(String ID) {
-        this.ID = ID;
+        this.ID = new SimpleStringProperty(ID);
     }
 
     /**
      * @return the date
      */
-    public String getDate() {
+    public StringProperty getOrderDate() {
         return date;
     }
 
@@ -42,7 +45,7 @@ public class clsOrders {
      * @param date the date to set
      */
     public void setDate(String date) {
-        this.date = date;
+        this.date = new SimpleStringProperty(date);
     }
     
     
