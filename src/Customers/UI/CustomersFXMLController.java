@@ -446,8 +446,10 @@ public class CustomersFXMLController implements Initializable {
                 //Get the currently selected customer
                 clsCustomers selectedCustomer = table.getSelectionModel().getSelectedItem();
                 
-                //Display the customer's ID in the Selected customer box
+                //Display the customer's information
                 custBox.setText(selectedCustomer.getCustID());
+                nameBox.setText(selectedCustomer.getCustName());
+                compBox.setText(selectedCustomer.getCustCompany());
                 
                 //Clear the 'cannot delete' error message
                 lblDeleteError.setVisible(false);
